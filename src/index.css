@@ -1,13 +1,40 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Taviraj:wght@100;200;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");
+
+:root {
+  --color-primary-light: #161861;
+  --color-primary: #121451;
+  --color-primary-dark: #0e1041;
+
+  --color-secondary-light: #17123c;
+  --color-secondary: #130f32;
+  --color-secondary-dark: #0f0c28;
+
+  --color-tertiary-light: #5e5bc6;
+  --color-tertiary: #4e4ca5;
+  --color-tertiary-dark: #3e3d84;
+
+  --color-base-light: #ebc0b5;
+  --color-base: #c4a097;
+  --color-base-dark: #9d8079;
+
+  --font-heading: "Kanit", sans-serif;
+  --font-primary: "Taviraj", serif;
+  --font-base: "Tenali Ramakrishna", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  font-family: var(--font-base);
+  margin: 0;
+  scroll-behavior: smooth;
+  background: var(--color-tertiary-dark);
+  color: #fff;
 }
