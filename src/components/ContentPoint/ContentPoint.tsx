@@ -27,7 +27,7 @@ const ContentPoint: React.FC<ContentPointProps> = ({ index, heading }) => {
         }}
       >
         <span style={{ color: "var(--color-base)", paddingRight: 3 }}>
-          0{index}
+          {index}
         </span>
         / {heading}
       </Typography>

@@ -6,10 +6,6 @@ const HeadingWrapper = styled.div`
   display: grid;
   justify-items: flex-start;
   grid-row-gap: 1rem;
-
-  & p {
-    margin: 0 0 1rem 0;
-  }
 `;
 const RegisterButton = styled.button`
   position: relative;
@@ -55,18 +51,19 @@ const HeadingSection: React.FC = () => {
           width: "100%",
         }}
       >
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={7} lg={5}>
           <HeadingWrapper>
             <Typography
               variant="h1"
               sx={{
                 color: "var(--color-tertiary-light)",
                 fontWeight: "bold",
+                fontSize: { xs: 50, md: 100 },
               }}
             >
               CodeNote
             </Typography>
-            <Typography variant="body1" sx={{ fontSize: 18 }}>
+            <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 18 } }}>
               Join us to increase your notes to a higher level. Lots of good
               features. Create your account and get started!
             </Typography>

@@ -9,12 +9,12 @@ const Navbar: React.FC = () => {
       position="static"
       sx={{
         background: "var(--color-tertiary)",
-        marginTop: 3,
+        marginTop: { xs: 0, sm: 3 },
         padding: 1,
         boxShadow: 0,
       }}
     >
-      <Toolbar>
+      <Toolbar sx={{ padding: { xs: 0, sm: "0 1rem 0 1rem" } }}>
         <img src={logo} alt="siema" width={75} />
         <Typography
           variant="h5"
@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
             marginLeft: 1,
             fontFamily: "var(--font-heading)",
             flexGrow: 1,
+            fontSize: { xs: 18 },
           }}
         >
           CODENOTE
