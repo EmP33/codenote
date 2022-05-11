@@ -1,12 +1,14 @@
-import { Container } from "@mui/material";
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
+import HeadingSection from "../components/HeadingSection/HeadingSection";
+import NotesSection from "../components/NotesSection/NotesSection";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Navbar />
-      <Container maxWidth="lg"></Container>
+      <HeadingSection />
+      <NotesSection />
     </>
   );
 };
