@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
+import { motion } from "framer-motion";
 
 interface NoteElementProps {
   title: string;
@@ -8,8 +9,24 @@ interface NoteElementProps {
 }
 
 const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
+  const [enableDragging, setEnableDragging] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.screen.width <= 600) {
+        setEnableDragging(false);
+      } else {
+        setEnableDragging(true);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+  }, []);
   return (
     <Card
+      component={motion.div}
+      drag={enableDragging}
+      dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
       sx={{
         height: 250,
         width: 350,
@@ -19,10 +36,11 @@ const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
         border: "2px solid var(--color-tertiary)",
         position: "relative",
         zIndex: 1,
+        cursor: "pointer",
 
         "@media only screen and (max-width: 400px)": {
           width: "auto",
-          maxWidth: 270,
+          maxWidth: 280,
         },
 
         "&:before": {

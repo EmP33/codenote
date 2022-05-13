@@ -2,11 +2,12 @@ import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import styled from "styled-components";
 import ContentPoint from "../ContentPoint/ContentPoint";
+import Tasks from "./Tasks/Tasks";
 
-const NotesWrapper = styled.section`
+const TasksWrapper = styled.section`
   width: 100%;
-  height: 100vh;
-  padding: 5rem 0 0 0;
+  min-height: 100vh;
+  padding: 5rem 0 2rem 0;
   position: relative;
 
   &:after {
@@ -26,21 +27,27 @@ const NotesWrapper = styled.section`
 `;
 const TasksSection: React.FC = () => {
   return (
-    <NotesWrapper>
-      <Container maxWidth="xl">
+    <TasksWrapper>
+      <Container maxWidth="xl" sx={{ padding: { xs: 0, md: "0 24px 0 24px" } }}>
         <ContentPoint index="02" heading="Organize time" />
-        <Grid container>
-          <Grid item>
+        <Grid container sx={{ marginTop: 5 }}>
+          <Grid item xs={12} md={6}>
             <Typography
               variant="h5"
-              sx={{ textAlign: "center", fontFamily: "var(--font-heading)" }}
+              sx={{
+                textAlign: "center",
+                fontFamily: "var(--font-heading)",
+              }}
             >
               Organize your time with perfect Tasks List
             </Typography>
           </Grid>
+          <Grid item xs={12} md={6}>
+            <Tasks />
+          </Grid>
         </Grid>
       </Container>
-    </NotesWrapper>
+    </TasksWrapper>
   );
 };
 

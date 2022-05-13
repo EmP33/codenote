@@ -20,7 +20,7 @@ const ContentPoint: React.FC<ContentPointProps> = ({ index, heading }) => {
         variant="h6"
         sx={{
           borderTop: "5px solid #fff",
-          padding: "1rem 0 0 0",
+          padding: { xs: "1rem .5rem 0 0", md: "1rem 0 0 0" },
           width: "300px",
           display: "flex",
           justifyContent: "flex-end",

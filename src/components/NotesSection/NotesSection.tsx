@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Typography, Grid } from "@mui/material";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import ContentPoint from "../ContentPoint/ContentPoint";
 import NoteElement from "./NoteElement/NoteElement";
@@ -28,37 +29,67 @@ const NotesWrapper = styled.section`
 `;
 
 const NotesSection: React.FC = () => {
+  const [notesActions, setNotesActions] = useState(false);
+  const [notesHeaderActions, setNotesHeaderActions] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setNotesHeaderActions(true);
+      }
+      if (window.scrollY > 400) {
+        setNotesActions(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <NotesWrapper>
       <Container
         maxWidth="xl"
         sx={{ display: "flex", flexDirection: "column" }}
       >
-        <ContentPoint
-          index="01"
-          heading="Improve
-        efficiency"
-        />
-        <Typography
-          variant="h5"
-          sx={{
-            textAlign: "center",
-            fontFamily: "var(--font-heading)",
-            marginTop: { xs: 10, lg: 0 },
-          }}
+        <motion.span
+          animate={{ opacity: notesHeaderActions ? 1 : 0 }}
+          initial={{ opacity: 0 }}
         >
-          Improve your efficiency with our wonderful notes!
-        </Typography>
+          <ContentPoint
+            index="01"
+            heading="Improve
+        efficiency"
+          />
+          <Typography
+            variant="h5"
+            sx={{
+              textAlign: "center",
+              fontFamily: "var(--font-heading)",
+              marginTop: { xs: 10, lg: 0 },
+            }}
+          >
+            Improve your efficiency with our wonderful notes!
+          </Typography>
+        </motion.span>
+
         <Grid
           container
           rowSpacing={0}
-          columnSpacing={5}
+          columnSpacing={{ xs: 0, sm: 2, md: 5 }}
+          component={motion.div}
           sx={{
             justifyContent: "center",
             marginTop: 5,
             maxWidth: 1200,
             alignSelf: "center",
           }}
+          animate={{
+            opacity: notesActions ? 1 : 0,
+            y: notesActions ? 0 : "100vh",
+            transition: {
+              type: "tween",
+            },
+          }}
+          initial={{ opacity: 0, y: "100vh" }}
         >
           <Grid item>
             <NoteElement
@@ -86,13 +117,6 @@ const NotesSection: React.FC = () => {
               title="Client Preferences"
               date="22/5/22"
               content="Regrouping to let James know which listings seem like the best it and..."
-            />
-          </Grid>
-          <Grid item>
-            <NoteElement
-              title="Party Preparations"
-              date="24/1/21"
-              content="What I need to do to make party. First buy some groceries, second call a dj"
             />
           </Grid>
           <Grid item>

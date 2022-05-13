@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 import HeadingSection from "../components/HeadingSection/HeadingSection";
 import NotesSection from "../components/NotesSection/NotesSection";
 import TasksSection from "../components/TasksSection/TasksSection";
+import Footer from "../components/Layout/Footer/Footer";
 
 const HomePage: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage: React.FC = () => {
       <HeadingSection />
       <NotesSection />
       <TasksSection />
+      <Footer />
     </>
   );
 };
