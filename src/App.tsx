@@ -9,6 +9,10 @@ import ClientPage from "./pages/ClientPage";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
+import { useDispatch } from "react-redux";
+import { useAppSelector } from "./lib/hooks";
+import { userActions } from "./store/user-slice";
+
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
 const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
 
@@ -22,15 +26,18 @@ const theme = createTheme({
 
 const App = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const currentUser = useAppSelector((state) => state.user.user);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
+        dispatch(userActions.fetchUser(user));
       } else {
+        dispatch(userActions.fetchUser(user));
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import GoogleIcon from "@mui/icons-material/Google";
 import { motion } from "framer-motion";
 import { auth, provider } from "../../../firebase";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
+import { useAppSelector } from "../../../lib/hooks";
 
 const authVariants = {
   hidden: { x: "100vw" },
@@ -84,22 +85,21 @@ const AuthWrapper = styled.div`
 
 const AuthLayout: React.FC<Props> = ({ children }) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/client");
+    }
+  }, [user, navigate]);
 
   const signInGoogleHandler = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        console.log(result);
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        const user = result.user;
+        navigate("/client");
       })
-      .catch((error) => {
-        console.log(error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-      });
+      .catch((error) => {});
   };
 
   return (
