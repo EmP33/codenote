@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import GoogleIcon from "@mui/icons-material/Google";
 import { motion } from "framer-motion";
+import { auth, provider } from "../../../firebase";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const authVariants = {
   hidden: { x: "100vw" },
@@ -83,6 +85,23 @@ const AuthWrapper = styled.div`
 const AuthLayout: React.FC<Props> = ({ children }) => {
   const location = useLocation();
 
+  const signInGoogleHandler = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  };
+
   return (
     <AuthWrapper>
       <Card
@@ -123,7 +142,7 @@ const AuthLayout: React.FC<Props> = ({ children }) => {
           <Typography sx={{ fontSize: 30 }} color="secondary">
             CodeNote
           </Typography>
-          <SocialMediaLoginButton>
+          <SocialMediaLoginButton onClick={signInGoogleHandler}>
             <GoogleIcon /> Continue with Google
           </SocialMediaLoginButton>
           <HorizontalText>or</HorizontalText>

@@ -1,12 +1,14 @@
 import React, { FormEvent, useRef, useState } from "react";
 import AuthLayout from "../components/Layout/AuthLayout/AuthLayout";
+import { useNavigate } from "react-router-dom";
 import { TextField, Button } from "@mui/material";
 
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterPage: React.FC = () => {
-  const emailRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const emailRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
   const confirmPasswordRef = useRef<HTMLInputElement>();
   const [emailError, setEmailError] = useState(false);
@@ -56,7 +58,7 @@ const RegisterPage: React.FC = () => {
 
     createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword)
       .then((userCredential) => {
-        const user = userCredential.user;
+        navigate("/client");
       })
       .catch((error) => {
         const errorCode = error.code;
