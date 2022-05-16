@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography, Grid, Container } from "@mui/material";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeadingWrapper = styled.div`
   display: grid;
@@ -67,7 +68,9 @@ const HeadingSection: React.FC = () => {
               Join us to increase your notes to a higher level. Lots of good
               features. Create your account and get started!
             </Typography>
-            <RegisterButton>Create an Account</RegisterButton>
+            <Link to="/register">
+              <RegisterButton>Create an Account</RegisterButton>
+            </Link>
           </HeadingWrapper>
         </Grid>
       </Grid>

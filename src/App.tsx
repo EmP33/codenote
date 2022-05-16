@@ -3,11 +3,11 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import { AnimatePresence } from "framer-motion";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+// import LoginPage from "./pages/LoginPage";
+// import RegisterPage from "./pages/RegisterPage";
 
-// const LoginPage = React.lazy(() => import("./pages/LoginPage"));
-// const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
+const LoginPage = React.lazy(() => import("./pages/LoginPage"));
+const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
 
 const theme = createTheme({
   palette: {
