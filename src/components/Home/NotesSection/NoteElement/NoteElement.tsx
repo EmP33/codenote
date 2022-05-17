@@ -60,10 +60,17 @@ const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
         <Box
           sx={{ display: "flex", justifyContent: "space-between", zIndex: 5 }}
         >
-          <Typography sx={{ fontSize: 18, marginBottom: 3 }} gutterBottom>
+          <Typography
+            id="title"
+            variant="h5"
+            sx={{ fontSize: 18, marginBottom: 3 }}
+            gutterBottom
+          >
             {title}
           </Typography>
           <Typography
+            id="date"
+            variant="h6"
             sx={{
               fontSize: 16,
               color: "var(--color-base)",
@@ -72,7 +79,9 @@ const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
             {date}
           </Typography>
         </Box>
-        <Typography sx={{ fontSize: 14, width: "75%" }}>{content}</Typography>
+        <Typography id="content" sx={{ fontSize: 14, width: "75%" }}>
+          {content}
+        </Typography>
       </CardContent>
     </Card>
   );

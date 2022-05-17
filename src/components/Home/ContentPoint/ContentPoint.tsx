@@ -18,6 +18,7 @@ const ContentPoint: React.FC<ContentPointProps> = ({ index, heading }) => {
     <ContentDiv>
       <Typography
         variant="h6"
+        id="heading"
         sx={{
           borderTop: "5px solid #fff",
           padding: { xs: "1rem .5rem 0 0", md: "1rem 0 0 0" },

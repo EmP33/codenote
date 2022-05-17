@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render NotesSection properly 1`] = `
+<styled.section>
+  <ForwardRef(Container)
+    maxWidth="xl"
+    sx={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <ForwardRef(MotionComponent)
+      animate={
+        Object {
+          "opacity": 0,
+        }
+      }
+      initial={
+        Object {
+          "opacity": 0,
+        }
+      }
+    >
+      <ContentPoint
+        heading="Improve
+ efficiency"
+        index="01"
+      />
+      <ForwardRef(Typography)
+        sx={
+          Object {
+            "fontFamily": "var(--font-heading)",
+            "marginTop": Object {
+              "lg": 0,
+              "xs": 10,
+            },
+            "textAlign": "center",
+          }
+        }
+        variant="h5"
+      >
+        Improve your efficiency with our wonderful notes!
+      </ForwardRef(Typography)>
+    </ForwardRef(MotionComponent)>
+    <ForwardRef(Grid)
+      animate={
+        Object {
+          "opacity": 0,
+          "transition": Object {
+            "type": "tween",
+          },
+          "y": "100vh",
+        }
+      }
+      columnSpacing={
+        Object {
+          "md": 5,
+          "sm": 2,
+          "xs": 0,
+        }
+      }
+      component={
+        Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "render": [Function],
+        }
+      }
+      container={true}
+      initial={
+        Object {
+          "opacity": 0,
+          "y": "100vh",
+        }
+      }
+      rowSpacing={0}
+      sx={
+        Object {
+          "alignSelf": "center",
+          "justifyContent": "center",
+          "marginTop": 5,
+          "maxWidth": 1200,
+        }
+      }
+    >
+      <ForwardRef(Grid)
+        item={true}
+      >
+        <NoteElement
+          content="Get to the airport by 7am before takeoff"
+          date="5/3/22"
+          title="Flight Details"
+        />
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+      >
+        <NoteElement
+          content="Goal Corner market for green homes in Emerald Heights area by specializing in modern"
+          date="11/2/22"
+          title="Business Strategy"
+        />
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+      >
+        <NoteElement
+          content="This is what I need to do today. First of all I have to go to barber to make my haircut, second go to work"
+          date="5/11/21"
+          title="Today's Ideas"
+        />
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+      >
+        <NoteElement
+          content="Regrouping to let James know which listings seem like the best it and..."
+          date="22/5/22"
+          title="Client Preferences"
+        />
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+      >
+        <NoteElement
+          content="What I need to do to make party. First buy some groceries, second call a dj"
+          date="24/1/21"
+          title="Party Preparations"
+        />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </ForwardRef(Container)>
+</styled.section>
+`;

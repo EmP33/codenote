@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render TasksSection properly 1`] = `
+<styled.section>
+  <ForwardRef(Container)
+    maxWidth="xl"
+    sx={
+      Object {
+        "padding": Object {
+          "md": "0 24px 0 24px",
+          "xs": 0,
+        },
+      }
+    }
+  >
+    <ContentPoint
+      heading="Organize time"
+      index="02"
+    />
+    <ForwardRef(Grid)
+      container={true}
+      sx={
+        Object {
+          "marginTop": 5,
+        }
+      }
+    >
+      <ForwardRef(Grid)
+        item={true}
+        md={6}
+        xs={12}
+      >
+        <ForwardRef(Typography)
+          sx={
+            Object {
+              "fontFamily": "var(--font-heading)",
+              "textAlign": "center",
+            }
+          }
+          variant="h5"
+        >
+          Organize your time with perfect Tasks List
+        </ForwardRef(Typography)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        md={6}
+        xs={12}
+      >
+        <Tasks />
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </ForwardRef(Container)>
+</styled.section>
+`;

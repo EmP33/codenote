@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`expect to render ContentPoint component 1`] = `
+exports[`ContentPoint component expect to render ContentPoint component 1`] = `
 <styled.div>
   <ForwardRef(Typography)
+    id="heading"
     sx={
       Object {
         "borderTop": "5px solid #fff",
@@ -24,8 +25,11 @@ exports[`expect to render ContentPoint component 1`] = `
           "paddingRight": 3,
         }
       }
-    />
+    >
+      01
+    </span>
     / 
+    Example heading
   </ForwardRef(Typography)>
 </styled.div>
 `;

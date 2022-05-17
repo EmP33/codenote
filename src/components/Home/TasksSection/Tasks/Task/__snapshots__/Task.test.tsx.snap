@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Task testing should render Task component properly 1`] = `
+<ForwardRef(Box)
+  sx={
+    Object {
+      "alignItems": "center",
+      "background": "#fff",
+      "borderRadius": 1,
+      "color": "var(--color-primary)",
+      "display": "grid",
+      "gridTemplateColumns": "repeat(2,minmax(min-content,max-content)) 1fr",
+      "marginBottom": 3,
+      "padding": 0.5,
+    }
+  }
+>
+  <ForwardRef(Checkbox)
+    color="secondary"
+  />
+  <ForwardRef(Typography)
+    sx={
+      Object {
+        "fontSize": Object {
+          "md": 18,
+          "sm": 16,
+          "xs": 14,
+        },
+      }
+    }
+  >
+    Example Title
+  </ForwardRef(Typography)>
+  <ForwardRef(Typography)
+    color="secondary"
+    sx={
+      Object {
+        "fontSize": Object {
+          "md": 18,
+          "sm": 16,
+          "xs": 14,
+        },
+        "justifySelf": "flex-end",
+        "marginRight": 1,
+      }
+    }
+  >
+    Due Today, 2:00 PM
+  </ForwardRef(Typography)>
+</ForwardRef(Box)>
+`;
