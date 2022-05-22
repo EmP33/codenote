@@ -16,7 +16,7 @@ const TasksWrapper = styled.section`
     height: 5rem;
     background: linear-gradient(
       180deg,
-      rgba(19, 15, 50, 1) 50%,
+      rgba(78, 76, 165, 1) 50%,
       rgba(62, 61, 132, 1) 100%
     );
     position: absolute;

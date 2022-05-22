@@ -12,7 +12,7 @@
   --color-secondary-dark: #0f0c28;
 
   --color-tertiary-light: #5e5bc6;
-  --color-tertiary: #4e4ca5;
+  --color-tertiary: rgb(78, 76, 165);
   --color-tertiary-dark: #3e3d84;
 
   --color-base-light: #ebc0b5;
@@ -28,6 +28,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: auto;
+  scrollbar-color: #5e5bc6 #3e3d84;
 }
 
 html,
@@ -37,4 +39,18 @@ body {
   scroll-behavior: smooth;
   background: var(--color-tertiary-dark);
   color: #fff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3e3d84;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #5e5bc6;
+  border-radius: 8px;
 }

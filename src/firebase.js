@@ -10,6 +10,18 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
+const Firebase = {
+  auth() {
+    console.log("auth real implementation");
+    return this;
+  },
+  async signOut() {
+    console.log("signOut real implementation");
+  },
+};
+
+export default Firebase;
+
 export const provider = new GoogleAuthProvider();
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);

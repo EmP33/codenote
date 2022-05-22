@@ -12,7 +12,7 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "./lib/hooks";
 import { userActions } from "./store/user-slice";
-import LoadingPage from "./pages/LoadingPage";
+import LoadingPage from "./pages/LoadingPage/LoadingPage";
 
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
 const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));

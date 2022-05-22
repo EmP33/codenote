@@ -9,34 +9,19 @@ interface NoteElementProps {
 }
 
 const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
-  const [enableDragging, setEnableDragging] = useState(true);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.screen.width <= 600) {
-        setEnableDragging(false);
-      } else {
-        setEnableDragging(true);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-  }, []);
   return (
     <Card
-      component={motion.div}
-      drag={enableDragging}
-      dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
       sx={{
         height: 250,
         width: 350,
         margin: "2rem auto",
-        background: "var(--color-secondary-light)",
+        background: "var(--color-tertiary-light)",
         color: "#fff",
-        border: "2px solid var(--color-tertiary)",
+        border: "1px solid #fff",
         position: "relative",
         zIndex: 1,
         cursor: "pointer",
+        flexShrink: 0,
 
         "@media only screen and (max-width: 400px)": {
           width: "auto",
@@ -47,7 +32,7 @@ const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
           content: "''",
           width: "100%",
           height: "70%",
-          background: "var(--color-secondary)",
+          background: "var(--color-tertiary-dark)",
           position: "absolute",
           borderRadius: "0 0 50% 50%",
           top: 0,

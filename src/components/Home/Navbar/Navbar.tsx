@@ -1,8 +1,13 @@
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../lib/hooks";
+import { auth } from "../../../firebase";
+import { signOut } from "firebase/auth";
 
 const Navbar: React.FC = () => {
+  const user = useAppSelector((state) => state.user.user);
+
   return (
     <AppBar
       position="static"
@@ -65,11 +70,23 @@ const Navbar: React.FC = () => {
           CODENOTE
         </Typography>
 
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <Button variant="outlined" color="info">
-            Login
+        {!user ? (
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Button variant="outlined" color="info">
+              Login
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            variant="outlined"
+            color="info"
+            onClick={() => {
+              signOut(auth).then(() => {});
+            }}
+          >
+            Logout
           </Button>
-        </Link>
+        )}
       </Toolbar>
     </AppBar>
   );

@@ -3,13 +3,13 @@ import { Container, Typography, Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import ContentPoint from "../ContentPoint/ContentPoint";
-import NoteElement from "./NoteElement/NoteElement";
+import NoteElement from "../../NoteElement/NoteElement";
 
 const NotesWrapper = styled.section`
   width: 100%;
   min-height: 100vh;
   padding: 5rem 0 0 0;
-  background: var(--color-secondary);
+  background: var(--color-tertiary);
   position: relative;
 
   &:after {
@@ -18,7 +18,7 @@ const NotesWrapper = styled.section`
     height: 5rem;
     background: linear-gradient(
       0deg,
-      rgba(19, 15, 50, 1) 50%,
+      rgba(78, 76, 165, 1) 50%,
       rgba(62, 61, 132, 1) 100%
     );
     position: absolute;

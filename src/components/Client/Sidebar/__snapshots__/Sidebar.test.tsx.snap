@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Sidebar/> should render Sidebar component 1`] = `
+<div
+  user={
+    Object {
+      "displayName": "Test User",
+      "email": "test@gmail.com",
+      "isLoggedIn": true,
+    }
+  }
+>
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "alignItems": "center",
+        "background": "var(--color-tertiary)",
+        "borderRadius": 2,
+        "display": "grid",
+        "gridRowGap": 5,
+        "gridTemplateRows": "repeat(4,max-content)",
+        "height": "95vh",
+        "marginRight": 1,
+        "position": "relative",
+        "width": "300px",
+      }
+    }
+  >
+    <ForwardRef(Box)
+      sx={
+        Object {
+          "alignItems": "center",
+          "background": "var(--color-secondary)",
+          "borderRadius": "8px 8px 0 0 ",
+          "display": "flex",
+          "p": 1,
+        }
+      }
+    >
+      <ForwardRef(Avatar)
+        alt="Test User"
+        sx={
+          Object {
+            "background": "var(--color-tertiary-light)",
+            "border": "1px solid #fff",
+          }
+        }
+      >
+        T
+      </ForwardRef(Avatar)>
+      <ForwardRef(Typography)
+        sx={
+          Object {
+            "flex": 1,
+            "marginLeft": 1,
+          }
+        }
+        variant="body1"
+      >
+        Test User
+      </ForwardRef(Typography)>
+      <Memo(ForwardRef(SettingsOutlinedIcon))
+        sx={
+          Object {
+            "&:hover": Object {
+              "color": "#ccc",
+              "cursor": "pointer",
+            },
+          }
+        }
+      />
+    </ForwardRef(Box)>
+    <ForwardRef(Button)
+      color="secondary"
+      disableElevation={true}
+      id="signOutButton"
+      size="large"
+      startIcon={<Memo />}
+      sx={
+        Object {
+          "&:hover": Object {
+            "background": "var(--color-tertiary-dark)",
+          },
+          "background": "var(--color-tertiary-light)",
+        }
+      }
+      variant="contained"
+    >
+      Create
+    </ForwardRef(Button)>
+    <nav
+      aria-label="main mailbox folders"
+    >
+      <ForwardRef(List)>
+        <ForwardRef(ListItem)
+          disablePadding={true}
+        >
+          <ForwardRef(ListItemButton)>
+            <Memo(ForwardRef(HomeIcon))
+              sx={
+                Object {
+                  "color": "#fff",
+                  "marginRight": 2,
+                }
+              }
+            />
+            <ForwardRef(ListItemText)
+              primary="Home"
+            />
+          </ForwardRef(ListItemButton)>
+        </ForwardRef(ListItem)>
+        <ForwardRef(Divider) />
+        <ForwardRef(ListItem)
+          disablePadding={true}
+        >
+          <ForwardRef(ListItemButton)>
+            <Memo(ForwardRef(NoteIcon))
+              sx={
+                Object {
+                  "color": "#fff",
+                  "marginRight": 2,
+                }
+              }
+            />
+            <ForwardRef(ListItemText)
+              primary="Notes"
+            />
+          </ForwardRef(ListItemButton)>
+        </ForwardRef(ListItem)>
+        <ForwardRef(Divider) />
+        <ForwardRef(ListItem)
+          disablePadding={true}
+        >
+          <ForwardRef(ListItemButton)>
+            <Memo(ForwardRef(TaskIcon))
+              sx={
+                Object {
+                  "color": "#fff",
+                  "marginRight": 2,
+                }
+              }
+            />
+            <ForwardRef(ListItemText)
+              primary="Tasks"
+            />
+          </ForwardRef(ListItemButton)>
+        </ForwardRef(ListItem)>
+      </ForwardRef(List)>
+    </nav>
+    <ForwardRef(Button)
+      color="secondary"
+      onClick={[Function]}
+      size="large"
+      sx={
+        Object {
+          "&:hover": Object {
+            "background": "var(--color-tertiary-dark)",
+          },
+          "background": "var(--color-tertiary-light)",
+          "bottom": 20,
+          "justifySelf": "center",
+          "position": "absolute",
+        }
+      }
+      variant="contained"
+    >
+      Sign Out
+    </ForwardRef(Button)>
+  </ForwardRef(Box)>
+</div>
+`;

@@ -34,6 +34,7 @@ const SocialMediaLoginButton = styled.button`
   color: #fff;
   border-radius: 3px;
   transition: all 0.2s ease-out;
+  cursor: pointer;
   &:hover {
     background: var(--color-tertiary);
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
@@ -142,9 +143,11 @@ const AuthLayout: React.FC<Props> = ({ children }) => {
           <Typography sx={{ fontSize: 30 }} color="secondary">
             CodeNote
           </Typography>
+
           <SocialMediaLoginButton onClick={signInGoogleHandler}>
             <GoogleIcon /> Continue with Google
           </SocialMediaLoginButton>
+
           <HorizontalText>or</HorizontalText>
           <Box sx={{ marginTop: 1 }}>{children}</Box>
           <Typography sx={{ color: "#737373", margin: ".5rem 0 .5rem 0" }}>
