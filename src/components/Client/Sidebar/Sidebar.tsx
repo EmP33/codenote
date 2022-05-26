@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Box,
@@ -40,9 +40,23 @@ interface ISidebar {
 
 const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.screen.width >= 900) {
+        setShowMenu(true);
+      } else {
+        setShowMenu(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+  }, []);
+
   const expandMenuHandler = () => {
     setShowMenu((prevState) => !prevState);
   };
+
   return (
     <Box
       sx={{
@@ -57,6 +71,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         gridRowGap: 5,
         alignItems: "center",
         position: "relative",
+        border: "1px solid var(--color-tertiary-dark)",
       }}
     >
       <Box
@@ -114,10 +129,18 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
       >
         Create
       </Button>
-      <ExpandMoreIcon
+      <Button
         onClick={expandMenuHandler}
-        style={{ margin: "0 auto", fontSize: 30 }}
-      />
+        color="inherit"
+        sx={{ display: { xs: "block", md: "none" } }}
+      >
+        <ExpandMoreIcon
+          style={{
+            margin: "0 auto",
+            fontSize: 30,
+          }}
+        />
+      </Button>
       <AnimatePresence>
         {showMenu && (
           <motion.nav

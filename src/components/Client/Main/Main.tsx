@@ -11,6 +11,8 @@ const Main = () => {
         borderRadius: 1,
         background: "var(--color-tertiary)",
         p: 3,
+        border: "1px solid var(--color-tertiary-dark)",
+        padding: 1,
       }}
     >
       <HomeSection />

@@ -3,7 +3,7 @@ import { Container, Typography, Grid } from "@mui/material";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import ContentPoint from "../ContentPoint/ContentPoint";
-import NoteElement from "../../NoteElement/NoteElement";
+import NoteElement from "../../elements/NoteElement/NoteElement";
 
 const NotesWrapper = styled.section`
   width: 100%;

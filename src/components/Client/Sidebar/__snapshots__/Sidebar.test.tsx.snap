@@ -1,12 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Sidebar/> should render Sidebar component 1`] = `
-<div
-  user={
+<ForwardRef(Box)
+  sx={
     Object {
-      "displayName": "Test User",
-      "email": "test@gmail.com",
-      "isLoggedIn": true,
+      "alignItems": "center",
+      "background": "var(--color-tertiary)",
+      "border": "1px solid var(--color-tertiary-dark)",
+      "borderRadius": 2,
+      "display": "grid",
+      "gridRowGap": 5,
+      "gridTemplateRows": "repeat(4,max-content)",
+      "height": Object {
+        "md": "95vh",
+        "xs": "auto",
+      },
+      "marginBottom": Object {
+        "md": 0,
+        "xs": 3,
+      },
+      "marginRight": Object {
+        "md": 1,
+        "xs": 0,
+      },
+      "position": "relative",
+      "width": Object {
+        "md": 300,
+        "xs": "100%",
+      },
     }
   }
 >
@@ -15,157 +36,107 @@ exports[`<Sidebar/> should render Sidebar component 1`] = `
       Object {
         "alignItems": "center",
         "background": "var(--color-tertiary)",
-        "borderRadius": 2,
-        "display": "grid",
-        "gridRowGap": 5,
-        "gridTemplateRows": "repeat(4,max-content)",
-        "height": "95vh",
-        "marginRight": 1,
-        "position": "relative",
-        "width": "300px",
+        "borderRadius": "8px 8px 0 0 ",
+        "display": "flex",
+        "p": 1,
       }
     }
   >
-    <ForwardRef(Box)
+    <ForwardRef(Avatar)
+      alt="Test User"
       sx={
         Object {
-          "alignItems": "center",
-          "background": "var(--color-secondary)",
-          "borderRadius": "8px 8px 0 0 ",
-          "display": "flex",
-          "p": 1,
+          "background": "var(--color-tertiary-light)",
+          "border": "1px solid #fff",
         }
       }
     >
-      <ForwardRef(Avatar)
-        alt="Test User"
-        sx={
-          Object {
-            "background": "var(--color-tertiary-light)",
-            "border": "1px solid #fff",
-          }
+      T
+    </ForwardRef(Avatar)>
+    <ForwardRef(Typography)
+      sx={
+        Object {
+          "flex": 1,
+          "marginLeft": 1,
         }
-      >
-        T
-      </ForwardRef(Avatar)>
-      <ForwardRef(Typography)
-        sx={
-          Object {
-            "flex": 1,
-            "marginLeft": 1,
-          }
-        }
-        variant="body1"
-      >
-        Test User
-      </ForwardRef(Typography)>
-      <Memo(ForwardRef(SettingsOutlinedIcon))
-        sx={
-          Object {
-            "&:hover": Object {
-              "color": "#ccc",
-              "cursor": "pointer",
-            },
-          }
-        }
-      />
-    </ForwardRef(Box)>
-    <ForwardRef(Button)
-      color="secondary"
-      disableElevation={true}
-      id="signOutButton"
-      size="large"
-      startIcon={<Memo />}
+      }
+      variant="body1"
+    >
+      Test User
+    </ForwardRef(Typography)>
+    <Memo(ForwardRef(SettingsOutlinedIcon))
       sx={
         Object {
           "&:hover": Object {
-            "background": "var(--color-tertiary-dark)",
+            "color": "#ccc",
+            "cursor": "pointer",
           },
-          "background": "var(--color-tertiary-light)",
         }
       }
-      variant="contained"
-    >
-      Create
-    </ForwardRef(Button)>
-    <nav
-      aria-label="main mailbox folders"
-    >
-      <ForwardRef(List)>
-        <ForwardRef(ListItem)
-          disablePadding={true}
-        >
-          <ForwardRef(ListItemButton)>
-            <Memo(ForwardRef(HomeIcon))
-              sx={
-                Object {
-                  "color": "#fff",
-                  "marginRight": 2,
-                }
-              }
-            />
-            <ForwardRef(ListItemText)
-              primary="Home"
-            />
-          </ForwardRef(ListItemButton)>
-        </ForwardRef(ListItem)>
-        <ForwardRef(Divider) />
-        <ForwardRef(ListItem)
-          disablePadding={true}
-        >
-          <ForwardRef(ListItemButton)>
-            <Memo(ForwardRef(NoteIcon))
-              sx={
-                Object {
-                  "color": "#fff",
-                  "marginRight": 2,
-                }
-              }
-            />
-            <ForwardRef(ListItemText)
-              primary="Notes"
-            />
-          </ForwardRef(ListItemButton)>
-        </ForwardRef(ListItem)>
-        <ForwardRef(Divider) />
-        <ForwardRef(ListItem)
-          disablePadding={true}
-        >
-          <ForwardRef(ListItemButton)>
-            <Memo(ForwardRef(TaskIcon))
-              sx={
-                Object {
-                  "color": "#fff",
-                  "marginRight": 2,
-                }
-              }
-            />
-            <ForwardRef(ListItemText)
-              primary="Tasks"
-            />
-          </ForwardRef(ListItemButton)>
-        </ForwardRef(ListItem)>
-      </ForwardRef(List)>
-    </nav>
-    <ForwardRef(Button)
-      color="secondary"
-      onClick={[Function]}
-      size="large"
-      sx={
-        Object {
-          "&:hover": Object {
-            "background": "var(--color-tertiary-dark)",
-          },
-          "background": "var(--color-tertiary-light)",
-          "bottom": 20,
-          "justifySelf": "center",
-          "position": "absolute",
-        }
-      }
-      variant="contained"
-    >
-      Sign Out
-    </ForwardRef(Button)>
+    />
   </ForwardRef(Box)>
-</div>
+  <ForwardRef(Button)
+    color="secondary"
+    disableElevation={true}
+    id="signOutButton"
+    size="large"
+    startIcon={<Memo />}
+    sx={
+      Object {
+        "&:hover": Object {
+          "background": "var(--color-tertiary-dark)",
+        },
+        "background": "var(--color-tertiary-light)",
+      }
+    }
+    variant="contained"
+  >
+    Create
+  </ForwardRef(Button)>
+  <ForwardRef(Button)
+    color="inherit"
+    onClick={[Function]}
+    sx={
+      Object {
+        "display": Object {
+          "md": "none",
+          "xs": "block",
+        },
+      }
+    }
+  >
+    <Memo(ForwardRef(ExpandMoreIcon))
+      style={
+        Object {
+          "fontSize": 30,
+          "margin": "0 auto",
+        }
+      }
+    />
+  </ForwardRef(Button)>
+  <AnimatePresence />
+  <ForwardRef(Button)
+    color="secondary"
+    onClick={[Function]}
+    size="large"
+    sx={
+      Object {
+        "&:hover": Object {
+          "background": "var(--color-tertiary-dark)",
+        },
+        "background": "var(--color-tertiary-light)",
+        "bottom": 20,
+        "display": Object {
+          "md": "block",
+          "xs": "none",
+        },
+        "justifySelf": "center",
+        "position": "absolute",
+      }
+    }
+    variant="contained"
+  >
+    Sign Out
+  </ForwardRef(Button)>
+</ForwardRef(Box)>
 `;

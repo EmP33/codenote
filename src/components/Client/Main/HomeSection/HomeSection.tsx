@@ -1,62 +1,28 @@
-import { Box, Typography, Button } from "@mui/material";
-import React from "react";
-import NoteElement from "../../../NoteElement/NoteElement";
+import styled from "styled-components";
+import DraftElement from "../../../elements/DraftElement/DraftElement";
+import Notes from "./HomeNotes/Notes";
+import Tasks from "./HomeTasks/Tasks";
+
+const HomeWrapper = styled.div`
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, max-content);
+  grid-row-gap: 3rem;
+  grid-column-gap: 1rem;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const HomeSection = () => {
   return (
-    <>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography sx={{ fontSize: 22 }}>Notes</Typography>
-        <Box sx={{ display: "flex" }}>
-          <Button color="inherit" size="small" disabled>
-            Newest
-          </Button>
-          <Button color="inherit" size="small">
-            Most Popular
-          </Button>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          margin: "0 auto",
-          display: "flex",
-          columnGap: 4,
-          overflowX: "auto",
-          maxWidth: { xs: "100vw", md: "70vw" },
-        }}
-      >
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-      </Box>
-    </>
+    <HomeWrapper>
+      <Notes />
+      <Tasks />
+      <DraftElement />
+    </HomeWrapper>
   );
 };
 

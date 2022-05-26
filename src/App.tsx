@@ -10,7 +10,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "./lib/hooks";
 import { userActions } from "./store/user-slice";
 import LoadingPage from "./pages/LoadingPage/LoadingPage";
 
@@ -28,7 +27,6 @@ const theme = createTheme({
 const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const currentUser = useAppSelector((state) => state.user.user);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

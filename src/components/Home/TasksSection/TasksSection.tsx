@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid, Typography } from "@mui/material";
 import styled from "styled-components";
 import ContentPoint from "../ContentPoint/ContentPoint";
-import Tasks from "./Tasks/Tasks";
+import Tasks from "../../elements/TasksElement/Tasks";
 
 const TasksWrapper = styled.section`
   width: 100%;
