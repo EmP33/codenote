@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteElement Component should render NoteElement properly 1`] = `
+<ForwardRef(Card)
+  sx={
+    Object {
+      "&:before": Object {
+        "background": "var(--color-tertiary-dark)",
+        "borderRadius": "0 0 50% 50%",
+        "content": "''",
+        "height": "70%",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+        "zIndex": -1,
+      },
+      "@media only screen and (max-width: 400px)": Object {
+        "maxWidth": 280,
+        "width": "auto",
+      },
+      "background": "var(--color-tertiary-light)",
+      "border": "1px solid #fff",
+      "color": "#fff",
+      "cursor": "pointer",
+      "flexShrink": 0,
+      "height": 250,
+      "margin": "2rem auto",
+      "position": "relative",
+      "width": 350,
+      "zIndex": 1,
+    }
+  }
+>
+  <ForwardRef(CardContent)>
+    <ForwardRef(Box)
+      sx={
+        Object {
+          "display": "flex",
+          "justifyContent": "space-between",
+          "zIndex": 5,
+        }
+      }
+    >
+      <ForwardRef(Typography)
+        gutterBottom={true}
+        id="title"
+        sx={
+          Object {
+            "fontSize": 18,
+            "marginBottom": 3,
+          }
+        }
+        variant="h5"
+      >
+        Flight Details
+      </ForwardRef(Typography)>
+      <ForwardRef(Typography)
+        id="date"
+        sx={
+          Object {
+            "color": "var(--color-base)",
+            "fontSize": 16,
+          }
+        }
+        variant="h6"
+      >
+        5/3/22
+      </ForwardRef(Typography)>
+    </ForwardRef(Box)>
+    <ForwardRef(Typography)
+      id="content"
+      sx={
+        Object {
+          "fontSize": 14,
+          "width": "75%",
+        }
+      }
+    >
+      Get to the airport by 7am before takeoff
+    </ForwardRef(Typography)>
+  </ForwardRef(CardContent)>
+</ForwardRef(Card)>
+`;
