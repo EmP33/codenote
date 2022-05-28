@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 
 import styled from "styled-components";
 
@@ -40,6 +40,7 @@ const ClientPage: React.FC<{}> = () => {
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           padding: { xs: 0, md: 2 },
+          height: "auto",
         }}
       >
         <Sidebar user={user} onSignOut={signOutCurrentUserHandler} />

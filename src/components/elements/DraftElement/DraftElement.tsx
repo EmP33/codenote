@@ -7,8 +7,7 @@ const DraftElement: React.FC = () => {
         padding: 3,
         background: "var(--color-tertiary-light)",
         fontSize: 20,
-        minHeight: 350,
-        maxHeight: 500,
+        minHeight: 200,
         overflow: "auto",
         borderRadius: 1,
       }}

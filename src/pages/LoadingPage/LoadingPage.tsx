@@ -3,9 +3,9 @@ import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 const svgVariants = {
-  start: { x: "50px" },
+  start: { x: "30px" },
   end: {
-    x: "-50px",
+    x: "-30px",
     transition: {
       duration: 1,
       yoyo: Infinity,
@@ -31,9 +31,6 @@ const LoadingPage: React.FC = () => {
         height="70.000000pt"
         viewBox="0 0 300.000000 248.000000"
         preserveAspectRatio="xMidYMid meet"
-        variants={svgVariants}
-        initial="start"
-        animate="end"
       >
         <g
           transform="translate(0.000000,248.000000) scale(0.100000,-0.100000)"
@@ -66,7 +63,15 @@ const LoadingPage: React.FC = () => {
           />
         </g>
       </motion.svg>
-      <Typography sx={{ fontSize: 30, padding: 0 }}>CodeNote</Typography>
+      <Typography
+        component={motion.h3}
+        variants={svgVariants}
+        initial="start"
+        animate="end"
+        sx={{ fontSize: 30, padding: 0 }}
+      >
+        CodeNote
+      </Typography>
     </Box>
   );
 };

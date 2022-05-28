@@ -22,9 +22,9 @@ exports[`Task testing should render Task component properly 1`] = `
     sx={
       Object {
         "fontSize": Object {
-          "md": 18,
-          "sm": 16,
-          "xs": 14,
+          "md": 16,
+          "sm": 14,
+          "xs": 12,
         },
       }
     }
@@ -36,9 +36,9 @@ exports[`Task testing should render Task component properly 1`] = `
     sx={
       Object {
         "fontSize": Object {
-          "md": 18,
-          "sm": 16,
-          "xs": 14,
+          "md": 16,
+          "sm": 14,
+          "xs": 12,
         },
         "justifySelf": "flex-end",
         "marginRight": 1,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 import UserDropdown from "./UserDropdown/UserDropdown";
@@ -73,15 +73,15 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
   return (
     <Box
       sx={{
         width: { xs: "100%", md: 300 },
-        height: { xs: "auto", md: "95vh" },
+        height: { xs: "auto", md: "auto" },
         background: "var(--color-tertiary)",
         borderRadius: { xs: 0, md: 2 },
         marginRight: { xs: 0, md: 1 },
@@ -110,7 +110,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
               border: "1px solid #fff",
             }}
           >
-            {user?.displayName[0] || user?.email[0]}
+            {user.displayName ? user?.displayName[0] : user?.email[0]}
           </Avatar>
         ) : (
           <Skeleton
@@ -136,11 +136,10 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
               }}
             />
           )}
-          {user !== true && (
-            <UserDropdownButton onClick={handleClick}>
-              <ExpandMoreIcon />
-            </UserDropdownButton>
-          )}
+
+          <UserDropdownButton onClick={handleClick}>
+            <ExpandMoreIcon />
+          </UserDropdownButton>
         </Typography>
         <Tooltip title="Settings">
           <SettingsOutlinedIcon
@@ -148,13 +147,15 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           />
         </Tooltip>
       </Box>
-      {/* {user === true && (
+      {user !== true && (
         <UserDropdown
           user={user}
           handleClose={handleClose}
           anchorEl={anchorEl}
+          onSignOut={onSignOut}
+          open={Boolean(anchorEl)}
         />
-      )} */}
+      )}
       <Button
         id="signOutButton"
         variant="contained"

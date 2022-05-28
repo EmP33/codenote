@@ -2,10 +2,10 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../lib/hooks";
-import { auth } from "../../../firebase";
-import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
   const user = useAppSelector((state) => state.user.user);
 
   return (
@@ -81,10 +81,10 @@ const Navbar: React.FC = () => {
             variant="outlined"
             color="info"
             onClick={() => {
-              signOut(auth).then(() => {});
+              navigate("/client");
             }}
           >
-            Logout
+            Dashboard
           </Button>
         )}
       </Toolbar>

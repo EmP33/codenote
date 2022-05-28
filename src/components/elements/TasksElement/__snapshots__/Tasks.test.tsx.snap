@@ -2,31 +2,16 @@
 
 exports[`should render Tasks properly 1`] = `
 <ForwardRef(Card)
-  component={
-    Object {
-      "$$typeof": Symbol(react.forward_ref),
-      "render": [Function],
-    }
-  }
-  drag={true}
-  dragConstraints={
-    Object {
-      "bottom": 0,
-      "left": 0,
-      "right": 0,
-      "top": 0,
-    }
-  }
   sx={
     Object {
       "background": "var(--color-tertiary-light)",
       "color": "#fff",
       "cursor": "pointer",
-      "margin": Object {
-        "md": "0 auto",
-        "xs": "2rem auto",
+      "minWidth": Object {
+        "sm": 450,
+        "xs": "100%",
       },
-      "maxWidth": 550,
+      "overflow": "auto",
       "padding": Object {
         "md": "2rem 1rem",
         "xs": "2rem .5rem",
@@ -45,7 +30,7 @@ exports[`should render Tasks properly 1`] = `
     <ForwardRef(Typography)
       sx={
         Object {
-          "fontSize": 30,
+          "fontSize": 22,
           "fontWeight": "bold",
         }
       }

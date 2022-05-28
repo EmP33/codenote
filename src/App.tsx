@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import { AnimatePresence } from "framer-motion";
 import ClientPage from "./pages/ClientPage";
@@ -11,6 +11,7 @@ import { auth } from "./firebase";
 
 import { useDispatch } from "react-redux";
 import { userActions } from "./store/user-slice";
+import { useAppSelector } from "./lib/hooks";
 import LoadingPage from "./pages/LoadingPage/LoadingPage";
 
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
@@ -27,6 +28,7 @@ const theme = createTheme({
 const App = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  const user = useAppSelector((state) => state.user.user);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -38,7 +40,9 @@ const App = () => {
     });
   }, [dispatch]);
 
-  // return <LoadingPage />;
+  if (user === true) {
+    return <LoadingPage />;
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,7 +52,10 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/client" element={<ClientPage />} />
+            <Route
+              path="/client"
+              element={!user ? <Navigate to="/" /> : <ClientPage />}
+            />
           </Routes>
         </AnimatePresence>
       </Suspense>
