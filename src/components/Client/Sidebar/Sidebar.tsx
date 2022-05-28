@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+import UserDropdown from "./UserDropdown/UserDropdown";
 
 import {
   Box,
@@ -11,6 +14,7 @@ import {
   ListItemText,
   Divider,
   Skeleton,
+  Tooltip,
 } from "@mui/material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import AddIcon from "@mui/icons-material/Add";
@@ -33,6 +37,13 @@ const navVariant = {
   },
 };
 
+const UserDropdownButton = styled.button`
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+`;
+
 interface ISidebar {
   user: any;
   onSignOut: () => void;
@@ -40,6 +51,7 @@ interface ISidebar {
 
 const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,21 +69,28 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
     setShowMenu((prevState) => !prevState);
   };
 
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box
       sx={{
         width: { xs: "100%", md: 300 },
         height: { xs: "auto", md: "95vh" },
         background: "var(--color-tertiary)",
-        borderRadius: 2,
+        borderRadius: { xs: 0, md: 2 },
         marginRight: { xs: 0, md: 1 },
-        marginBottom: { xs: 3, md: 0 },
         display: "grid",
         gridTemplateRows: "repeat(4,max-content)",
         gridRowGap: 5,
         alignItems: "center",
         position: "relative",
-        border: "1px solid var(--color-tertiary-dark)",
+        border: { xs: 0, md: "1px solid var(--color-tertiary-dark)" },
       }}
     >
       <Box
@@ -102,19 +121,40 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           />
         )}
 
-        <Typography variant="body1" sx={{ flex: 1, marginLeft: 1 }}>
+        <Typography
+          variant="body1"
+          sx={{ flex: 1, marginLeft: 1, display: "flex" }}
+        >
           {user !== true ? (
             user?.displayName || user?.email
           ) : (
             <Skeleton
-              sx={{ bgcolor: "var(--color-tertiary-dark)", marginRight: 1 }}
+              sx={{
+                bgcolor: "var(--color-tertiary-dark)",
+                marginRight: 1,
+                width: "100%",
+              }}
             />
           )}
+          {user !== true && (
+            <UserDropdownButton onClick={handleClick}>
+              <ExpandMoreIcon />
+            </UserDropdownButton>
+          )}
         </Typography>
-        <SettingsOutlinedIcon
-          sx={{ "&:hover": { color: "#ccc", cursor: "pointer" } }}
-        />
+        <Tooltip title="Settings">
+          <SettingsOutlinedIcon
+            sx={{ "&:hover": { color: "#ccc", cursor: "pointer" } }}
+          />
+        </Tooltip>
       </Box>
+      {/* {user === true && (
+        <UserDropdown
+          user={user}
+          handleClose={handleClose}
+          anchorEl={anchorEl}
+        />
+      )} */}
       <Button
         id="signOutButton"
         variant="contained"

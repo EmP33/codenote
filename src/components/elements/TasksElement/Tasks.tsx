@@ -7,13 +7,11 @@ const Tasks: React.FC = () => {
     <Card
       sx={{
         background: "var(--color-tertiary-light)",
-        width: "90%",
+        minWidth: { xs: "100%", sm: 450 },
         color: "#fff",
         textAlign: "center",
         padding: { xs: "2rem .5rem", md: "2rem 1rem" },
         cursor: "pointer",
-        minHeight: 350,
-        maxHeight: 500,
         overflow: "auto",
       }}
     >

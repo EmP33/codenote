@@ -31,7 +31,7 @@ const Notes = () => {
           display: "flex",
           columnGap: 4,
           overflowX: "auto",
-          maxWidth: { xs: "100vw", md: "70vw" },
+          maxWidth: { xs: "93vw", md: "100vw" },
         }}
       >
         <NoteElement

@@ -6,7 +6,7 @@ const Tasks = () => {
     <Box
       sx={{
         gridColumn: "1 / 2",
-        width: "90%",
+        minWidth: { xs: "100%", sm: 450 },
         margin: "0 auto",
       }}
     >

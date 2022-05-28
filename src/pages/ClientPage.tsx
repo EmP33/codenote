@@ -39,7 +39,7 @@ const ClientPage: React.FC<{}> = () => {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          padding: { xs: 0, sm: 2 },
+          padding: { xs: 0, md: 2 },
         }}
       >
         <Sidebar user={user} onSignOut={signOutCurrentUserHandler} />

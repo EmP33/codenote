@@ -11,7 +11,7 @@ const HomeWrapper = styled.div`
   grid-row-gap: 3rem;
   grid-column-gap: 1rem;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 750px) {
     grid-template-columns: 1fr;
   }
 `;

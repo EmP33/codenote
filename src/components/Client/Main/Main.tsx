@@ -8,7 +8,7 @@ const Main = () => {
     <Container
       maxWidth="lg"
       sx={{
-        borderRadius: 1,
+        borderRadius: { xs: 0, md: 1 },
         background: "var(--color-tertiary)",
         p: 3,
         border: "1px solid var(--color-tertiary-dark)",
