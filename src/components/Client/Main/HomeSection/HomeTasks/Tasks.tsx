@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TasksContainer from "../../../../elements/TasksElement/Tasks";
 
-const Tasks = () => {
+const Tasks: React.FC = () => {
   return (
     <Box
       sx={{

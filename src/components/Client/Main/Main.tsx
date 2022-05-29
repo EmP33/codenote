@@ -1,7 +1,10 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import { Container } from "@mui/material";
 
 import HomeSection from "./HomeSection/HomeSection";
+import TasksSection from "./TasksSection/TasksSection";
+import NotesSection from "./NotesSection/NotesSection";
 
 const Main = () => {
   return (
@@ -15,7 +18,11 @@ const Main = () => {
         padding: 1,
       }}
     >
-      <HomeSection />
+      <Routes>
+        <Route path="/" element={<HomeSection />} />
+        <Route path="/notes" element={<NotesSection />} />
+        <Route path="/tasks" element={<TasksSection />} />
+      </Routes>
     </Container>
   );
 };

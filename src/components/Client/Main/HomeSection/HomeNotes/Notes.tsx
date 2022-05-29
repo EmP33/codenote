@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import styled from "styled-components";
 import NoteElement from "../../../../elements/NoteElement/NoteElement";
@@ -6,7 +7,8 @@ const NotesSection = styled.div`
   grid-column: 1/-1;
 `;
 
-const Notes = () => {
+const Notes: React.FC = () => {
+  const [notesType, setNotesType] = useState("newest");
   return (
     <NotesSection>
       <Box
@@ -17,10 +19,20 @@ const Notes = () => {
       >
         <Typography sx={{ fontSize: 22 }}>Notes</Typography>
         <Box sx={{ display: "flex" }}>
-          <Button color="inherit" size="small" disabled>
+          <Button
+            color="inherit"
+            size="small"
+            disabled={notesType === "newest"}
+            onClick={setNotesType.bind(null, "newest")}
+          >
             Newest
           </Button>
-          <Button color="inherit" size="small">
+          <Button
+            color="inherit"
+            size="small"
+            disabled={notesType === "popular"}
+            onClick={setNotesType.bind(null, "popular")}
+          >
             Most Popular
           </Button>
         </Box>

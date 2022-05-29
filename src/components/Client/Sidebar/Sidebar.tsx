@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import UserDropdown from "./UserDropdown/UserDropdown";
+import UserSettings from "./UserSettings/UserSettings";
 
 import {
   Box,
@@ -51,7 +53,10 @@ interface ISidebar {
 
 const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,11 +82,20 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
     setAnchorEl(null);
   }, []);
 
+  const openSettingsHandler = () => {
+    setShowSettings(true);
+  };
+
+  const closeSettingsHandler = useCallback(() => {
+    setShowSettings(false);
+  }, []);
+
   return (
     <Box
       sx={{
         width: { xs: "100%", md: 300 },
-        height: { xs: "auto", md: "auto" },
+        minHeight: { xs: 0, md: "95vh" },
+        height: "auto",
         background: "var(--color-tertiary)",
         borderRadius: { xs: 0, md: 2 },
         marginRight: { xs: 0, md: 1 },
@@ -143,9 +157,14 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         </Typography>
         <Tooltip title="Settings">
           <SettingsOutlinedIcon
+            onClick={openSettingsHandler}
             sx={{ "&:hover": { color: "#ccc", cursor: "pointer" } }}
           />
         </Tooltip>
+        <UserSettings
+          onClose={closeSettingsHandler}
+          showSettings={showSettings}
+        />
       </Box>
       {user !== true && (
         <UserDropdown
@@ -179,6 +198,8 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           style={{
             margin: "0 auto",
             fontSize: 30,
+            transform: showMenu ? "rotate(-180deg)" : "rotate(0)",
+            transition: "all .2s ease-in-out",
           }}
         />
       </Button>
@@ -197,21 +218,39 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           >
             <List>
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton
+                  selected={
+                    !location.pathname.includes("notes") &&
+                    !location.pathname.includes("tasks")
+                  }
+                  onClick={() => {
+                    navigate("/client");
+                  }}
+                >
                   <HomeIcon sx={{ color: "#fff", marginRight: 2 }} />
                   <ListItemText primary="Home" />
                 </ListItemButton>
               </ListItem>
               <Divider />
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton
+                  selected={location.pathname.includes("notes")}
+                  onClick={() => {
+                    navigate("/client/notes");
+                  }}
+                >
                   <NoteIcon sx={{ color: "#fff", marginRight: 2 }} />
                   <ListItemText primary="Notes" />
                 </ListItemButton>
               </ListItem>
               <Divider />
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton
+                  selected={location.pathname.includes("tasks")}
+                  onClick={() => {
+                    navigate("/client/tasks");
+                  }}
+                >
                   <TaskIcon sx={{ color: "#fff", marginRight: 2 }} />
                   <ListItemText primary="Tasks" />
                 </ListItemButton>

@@ -16,7 +16,7 @@ const HomeWrapper = styled.div`
   }
 `;
 
-const HomeSection = () => {
+const HomeSection: React.FC = () => {
   return (
     <HomeWrapper>
       <Notes />

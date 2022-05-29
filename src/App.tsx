@@ -49,11 +49,14 @@ const App = () => {
       <Suspense fallback={<h1>Loading..</h1>}>
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/"
+              element={user ? <Navigate to="/client" /> : <HomePage />}
+            />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
-              path="/client"
+              path="/client/*"
               element={!user ? <Navigate to="/" /> : <ClientPage />}
             />
           </Routes>
