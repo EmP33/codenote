@@ -1,20 +1,26 @@
 import React from "react";
-import { Popover } from "@mui/material";
+import {
+  Popover,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import NoteIcon from "@mui/icons-material/Note";
+import TaskIcon from "@mui/icons-material/Task";
 
-const CreateDropdown: React.FC = () => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-    null
-  );
+interface ICreateDropdown {
+  open: boolean;
+  anchorEl: HTMLButtonElement | null;
+  handleClose: () => void;
+}
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
+const CreateDropdown: React.FC<ICreateDropdown> = ({
+  open,
+  anchorEl,
+  handleClose,
+}) => {
   const id = open ? "simple-popover" : undefined;
   return (
     <Popover
@@ -31,7 +37,24 @@ const CreateDropdown: React.FC = () => {
         horizontal: "center",
       }}
     >
-      The content of the Popover.
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <NoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create Note" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <TaskIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create Task" />
+          </ListItemButton>
+        </ListItem>
+      </List>
     </Popover>
   );
 };

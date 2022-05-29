@@ -26,6 +26,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import { motion, AnimatePresence } from "framer-motion";
+import CreateDropdown from "./CreateDropdown/CreateDropdown";
 
 const navVariant = {
   initial: {
@@ -55,6 +56,8 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [createAnchor, setCreateAnchor] =
+    React.useState<HTMLButtonElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -89,6 +92,14 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const closeSettingsHandler = useCallback(() => {
     setShowSettings(false);
   }, []);
+
+  const handleCreateClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setCreateAnchor(event.currentTarget);
+  };
+
+  const handleCreateClose = () => {
+    setCreateAnchor(null);
+  };
 
   return (
     <Box
@@ -186,9 +197,15 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         color="secondary"
         size="large"
         startIcon={<AddIcon />}
+        onClick={handleCreateClick}
       >
         Create
       </Button>
+      <CreateDropdown
+        open={Boolean(createAnchor)}
+        anchorEl={createAnchor}
+        handleClose={handleCreateClose}
+      />
       <Button
         onClick={expandMenuHandler}
         color="inherit"
