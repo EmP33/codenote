@@ -90,43 +90,7 @@ const NotesSection: React.FC = () => {
             },
           }}
           initial={{ opacity: 0, y: "100vh" }}
-        >
-          <Grid item>
-            <NoteElement
-              title="Flight Details"
-              date="5/3/22"
-              content="Get to the airport by 7am before takeoff"
-            />
-          </Grid>
-          <Grid item>
-            <NoteElement
-              title="Business Strategy"
-              date="11/2/22"
-              content="Goal Corner market for green homes in Emerald Heights area by specializing in modern"
-            />
-          </Grid>
-          <Grid item>
-            <NoteElement
-              title="Today's Ideas"
-              date="5/11/21"
-              content="This is what I need to do today. First of all I have to go to barber to make my haircut, second go to work"
-            />
-          </Grid>
-          <Grid item>
-            <NoteElement
-              title="Client Preferences"
-              date="22/5/22"
-              content="Regrouping to let James know which listings seem like the best it and..."
-            />
-          </Grid>
-          <Grid item>
-            <NoteElement
-              title="Party Preparations"
-              date="24/1/21"
-              content="What I need to do to make party. First buy some groceries, second call a dj"
-            />
-          </Grid>
-        </Grid>
+        ></Grid>
       </Container>
     </NotesWrapper>
   );

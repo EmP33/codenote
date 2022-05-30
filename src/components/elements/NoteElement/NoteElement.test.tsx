@@ -8,6 +8,7 @@ describe("NoteElement Component", () => {
       title="Flight Details"
       date="5/3/22"
       content="Get to the airport by 7am before takeoff"
+      id="example"
     />
   );
   it("should render NoteElement properly", () => {

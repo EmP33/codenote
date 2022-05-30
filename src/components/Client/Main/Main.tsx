@@ -20,7 +20,7 @@ const Main = () => {
     >
       <Routes>
         <Route path="/" element={<HomeSection />} />
-        <Route path="/notes" element={<NotesSection />} />
+        <Route path="/notes/:note" element={<NotesSection />} />
         <Route path="/tasks" element={<TasksSection />} />
       </Routes>
     </Container>

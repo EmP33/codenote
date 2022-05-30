@@ -1,15 +1,26 @@
 import React from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface NoteElementProps {
   title: string;
   date: string;
   content: string;
+  id: string;
 }
 
-const NoteElement: React.FC<NoteElementProps> = ({ title, date, content }) => {
+const NoteElement: React.FC<NoteElementProps> = ({
+  title,
+  date,
+  content,
+  id,
+}) => {
+  const navigate = useNavigate();
   return (
     <Card
+      onClick={() => {
+        navigate(`/client/notes/${id}`);
+      }}
       sx={{
         height: 250,
         width: 350,

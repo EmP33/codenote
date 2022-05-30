@@ -25,6 +25,8 @@ import TaskIcon from "@mui/icons-material/Task";
 import HomeIcon from "@mui/icons-material/Home";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+import { useAppSelector } from "../../../lib/hooks";
+
 import { motion, AnimatePresence } from "framer-motion";
 import CreateDropdown from "./CreateDropdown/CreateDropdown";
 
@@ -55,6 +57,7 @@ interface ISidebar {
 const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const userData = useAppSelector((state) => state.user.userData);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [createAnchor, setCreateAnchor] =
     React.useState<HTMLButtonElement | null>(null);
@@ -253,7 +256,8 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
                 <ListItemButton
                   selected={location.pathname.includes("notes")}
                   onClick={() => {
-                    navigate("/client/notes");
+                    //@ts-ignore
+                    navigate(`/client/notes/${userData.notes[0].id}`);
                   }}
                 >
                   <NoteIcon sx={{ color: "#fff", marginRight: 2 }} />

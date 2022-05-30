@@ -3,12 +3,13 @@ import styled from "styled-components";
 import HomeNotes from "../HomeSection/HomeNotes/Notes";
 
 import { createReactEditorJS } from "react-editor-js";
-import { EDITOR_JS_TOOLS } from "./constants";
+
 import { Box, Button } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../../../../store/user-slice";
 import { v1 as uuidv1 } from "uuid";
+import ReactEditor from "./ReactEditor/ReactEditor";
 
 const NotesWrapper = styled.div`
   display: grid;
@@ -39,14 +40,9 @@ const ReactEditorJS = createReactEditorJS();
 const NotesSection = () => {
   const dispatch = useDispatch();
   const editorCore = useRef(null);
-  const user = useSelector((state) => state.user.user);
   const userData = useSelector((state) => state.user.userData);
+  const user = useSelector((state) => state.user.user);
   const { uid } = user;
-
-  /* A callback function that is called when the editor is initialized. */
-  const handleInitialize = React.useCallback((instance) => {
-    editorCore.current = instance;
-  }, []);
 
   /* Saving the data from the editor. */
   const handleSave = useCallback(async () => {
@@ -59,7 +55,9 @@ const NotesSection = () => {
         date: savedData.time,
       })
     );
-  }, [dispatch, uid]);
+  }, []);
+
+  if (!userData.notes.length) return <h1>Loading..</h1>;
 
   return (
     <NotesWrapper>
@@ -93,38 +91,16 @@ const NotesSection = () => {
             marginTop: 4,
           }}
         >
-          <ReactEditorJS
+          <ReactEditor editorCore={editorCore} />
+          {/* <ReactEditorJS
+            holder="holder"
             onInitialize={handleInitialize}
             tools={EDITOR_JS_TOOLS}
             defaultValue={{
               time: 1635603431943,
-              blocks: [
-                {
-                  id: "sheNwCUP5A",
-                  type: "header",
-                  data: {
-                    text: "Editor.js",
-                    level: 2,
-                  },
-                },
-                {
-                  id: "12iM3lqzcm",
-                  type: "paragraph",
-                  data: {
-                    text: "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.",
-                  },
-                },
-                {
-                  id: "fvZGuFXHmK",
-                  type: "header",
-                  data: {
-                    text: "Key features",
-                    level: 3,
-                  },
-                },
-              ],
+              blocks: userData.notes[0].blocks,
             }}
-          />
+          /> */}
         </Box>
       </EditorContainer>
     </NotesWrapper>

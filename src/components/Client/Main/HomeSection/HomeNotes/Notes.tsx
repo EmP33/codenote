@@ -13,15 +13,6 @@ const NotesSection = styled.div`
 const Notes: React.FC = () => {
   const location = useLocation();
   const userData = useAppSelector((state) => state.user.userData);
-  console.log(userData);
-  if (userData.notes?.length) {
-    console.log(
-      userData.notes[0].blocks.find(
-        (block: { data: {}; id: string; type: string }) =>
-          block.type === "header"
-      ).data.text
-    );
-  }
 
   const [notesType, setNotesType] = useState("newest");
   return (
@@ -91,6 +82,7 @@ const Notes: React.FC = () => {
           userData.notes?.map((note) => (
             <NoteElement
               key={note.id}
+              id={note.id}
               title={
                 note.blocks.find(
                   (block: { data: {}; id: string; type: string }) =>
@@ -108,37 +100,6 @@ const Notes: React.FC = () => {
               }
             />
           ))}
-
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
-        <NoteElement
-          title="Client Preferences"
-          date="22/5/22"
-          content="Regrouping to let James know which listings seem like the best it and..."
-        />
       </Box>
     </NotesSection>
   );
