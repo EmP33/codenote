@@ -97,9 +97,9 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
     setCreateAnchor(event.currentTarget);
   };
 
-  const handleCreateClose = () => {
+  const handleCreateClose = useCallback(() => {
     setCreateAnchor(null);
-  };
+  }, []);
 
   return (
     <Box

@@ -37,7 +37,7 @@ const CreateDropdown: React.FC<ICreateDropdown> = ({
         horizontal: "center",
       }}
     >
-      <List>
+      <List sx={{ width: 250 }}>
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
@@ -59,4 +59,4 @@ const CreateDropdown: React.FC<ICreateDropdown> = ({
   );
 };
 
-export default CreateDropdown;
+export default React.memo(CreateDropdown);
