@@ -24,7 +24,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
       sx={{
         height: 250,
         width: 350,
-        margin: "2rem auto",
+        margin: "2rem 0",
         background: "var(--color-tertiary-light)",
         color: "#fff",
         border: "1px solid #fff",
@@ -48,6 +48,10 @@ const NoteElement: React.FC<NoteElementProps> = ({
           top: 0,
           left: 0,
           zIndex: -1,
+        },
+
+        "&:hover": {
+          filter: "brightness(110%)",
         },
       }}
     >
@@ -82,4 +86,4 @@ const NoteElement: React.FC<NoteElementProps> = ({
   );
 };
 
-export default NoteElement;
+export default React.memo(NoteElement);

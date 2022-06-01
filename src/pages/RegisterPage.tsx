@@ -60,9 +60,7 @@ const RegisterPage: React.FC = () => {
       .then((userCredential) => {
         navigate("/client");
       })
-      .catch((error) => {
-        const errorCode = error.code;
-      });
+      .catch((error) => {});
   };
 
   return (

@@ -6,7 +6,6 @@ import {
   Box,
   DialogTitle,
   useMediaQuery,
-  Typography,
 } from "@mui/material";
 
 import LoginSection from "./Sections/LoginSection";

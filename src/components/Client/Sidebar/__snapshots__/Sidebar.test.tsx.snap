@@ -1,167 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Sidebar/> should render Sidebar component 1`] = `
-<ForwardRef(Box)
-  sx={
+<ContextProvider
+  value={
     Object {
-      "alignItems": "center",
-      "background": "var(--color-tertiary)",
-      "border": Object {
-        "md": "1px solid var(--color-tertiary-dark)",
-        "xs": 0,
+      "basename": "/",
+      "navigator": Object {
+        "action": "POP",
+        "back": [Function],
+        "block": [Function],
+        "createHref": [Function],
+        "forward": [Function],
+        "go": [Function],
+        "index": 0,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "6w4hnj5l",
+          "pathname": "/",
+          "search": "",
+          "state": null,
+        },
+        "push": [Function],
+        "replace": [Function],
       },
-      "borderRadius": Object {
-        "md": 2,
-        "xs": 0,
-      },
-      "display": "grid",
-      "gridRowGap": 5,
-      "gridTemplateRows": "repeat(4,max-content)",
-      "height": Object {
-        "md": "95vh",
-        "xs": "auto",
-      },
-      "marginRight": Object {
-        "md": 1,
-        "xs": 0,
-      },
-      "position": "relative",
-      "width": Object {
-        "md": 300,
-        "xs": "100%",
-      },
+      "static": false,
     }
   }
 >
-  <ForwardRef(Box)
-    sx={
+  <ContextProvider
+    value={
       Object {
-        "alignItems": "center",
-        "background": "var(--color-tertiary)",
-        "borderRadius": "8px 8px 0 0 ",
-        "display": "flex",
-        "p": 1,
-      }
-    }
-  >
-    <ForwardRef(Avatar)
-      alt="Test User"
-      sx={
-        Object {
-          "background": "var(--color-tertiary-light)",
-          "border": "1px solid #fff",
-        }
-      }
-    >
-      T
-    </ForwardRef(Avatar)>
-    <ForwardRef(Typography)
-      sx={
-        Object {
-          "display": "flex",
-          "flex": 1,
-          "marginLeft": 1,
-        }
-      }
-      variant="body1"
-    >
-      Test User
-      <styled.button
-        onClick={[Function]}
-      >
-        <Memo(ForwardRef(ExpandMoreIcon)) />
-      </styled.button>
-    </ForwardRef(Typography)>
-    <ForwardRef(Tooltip)
-      title="Settings"
-    >
-      <Memo(ForwardRef(SettingsOutlinedIcon))
-        sx={
-          Object {
-            "&:hover": Object {
-              "color": "#ccc",
-              "cursor": "pointer",
-            },
-          }
-        }
-      />
-    </ForwardRef(Tooltip)>
-  </ForwardRef(Box)>
-  <Memo(UserDropdown)
-    anchorEl={null}
-    handleClose={[Function]}
-    onSignOut={[Function]}
-    open={false}
-    user={
-      Object {
-        "displayName": "Test User",
-        "email": "test@gmail.com",
-        "isLoggedIn": true,
-      }
-    }
-  />
-  <ForwardRef(Button)
-    color="secondary"
-    disableElevation={true}
-    id="signOutButton"
-    size="large"
-    startIcon={<Memo />}
-    sx={
-      Object {
-        "&:hover": Object {
-          "background": "var(--color-tertiary-dark)",
+        "location": Object {
+          "hash": "",
+          "key": "6w4hnj5l",
+          "pathname": "/",
+          "search": "",
+          "state": null,
         },
-        "background": "var(--color-tertiary-light)",
-      }
-    }
-    variant="contained"
-  >
-    Create
-  </ForwardRef(Button)>
-  <ForwardRef(Button)
-    color="inherit"
-    onClick={[Function]}
-    sx={
-      Object {
-        "display": Object {
-          "md": "none",
-          "xs": "block",
-        },
+        "navigationType": "POP",
       }
     }
   >
-    <Memo(ForwardRef(ExpandMoreIcon))
-      style={
+    <Sidebar
+      onSignOut={[Function]}
+      user={
         Object {
-          "fontSize": 30,
-          "margin": "0 auto",
+          "displayName": "Test User",
+          "email": "test@gmail.com",
+          "isLoggedIn": true,
         }
       }
     />
-  </ForwardRef(Button)>
-  <AnimatePresence />
-  <ForwardRef(Button)
-    color="secondary"
-    onClick={[Function]}
-    size="large"
-    sx={
-      Object {
-        "&:hover": Object {
-          "background": "var(--color-tertiary-dark)",
-        },
-        "background": "var(--color-tertiary-light)",
-        "bottom": 20,
-        "display": Object {
-          "md": "block",
-          "xs": "none",
-        },
-        "justifySelf": "center",
-        "position": "absolute",
-      }
-    }
-    variant="contained"
-  >
-    Sign Out
-  </ForwardRef(Button)>
-</ForwardRef(Box)>
+  </ContextProvider>
+</ContextProvider>
 `;

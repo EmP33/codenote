@@ -1,7 +1,6 @@
 import {
   createSlice,
   PayloadAction,
-  PayloadActionCreator,
   Dispatch,
   AnyAction,
 } from "@reduxjs/toolkit";
@@ -44,7 +43,7 @@ const userSlice = createSlice({
 
 export const addNote = (
   id: string,
-  note: { id: string; blocks: []; date: number }
+  note: { id: string; blocks: []; date: number; views: number }
 ) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     const sendRequest = async () => {
@@ -53,6 +52,7 @@ export const addNote = (
         id: note.id,
         blocks: note.blocks,
         date: note.date,
+        views: note.views,
       });
     };
     await sendRequest();

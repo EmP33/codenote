@@ -55,14 +55,15 @@ interface ISidebar {
 }
 
 const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const userData = useAppSelector((state) => state.user.userData);
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const [createAnchor, setCreateAnchor] =
-    React.useState<HTMLButtonElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const userData = useAppSelector((state) => state.user.userData);
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [createAnchor, setCreateAnchor] = useState<HTMLButtonElement | null>(
+    null
+  );
 
   useEffect(() => {
     const handleResize = () => {

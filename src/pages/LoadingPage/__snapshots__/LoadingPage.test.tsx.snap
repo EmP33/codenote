@@ -13,25 +13,8 @@ exports[`should render LoadingPage properly 1`] = `
   }
 >
   <ForwardRef(MotionComponent)
-    animate="end"
     height="70.000000pt"
-    initial="start"
     preserveAspectRatio="xMidYMid meet"
-    variants={
-      Object {
-        "end": Object {
-          "transition": Object {
-            "duration": 1,
-            "ease": "easeInOut",
-            "yoyo": Infinity,
-          },
-          "x": "-50px",
-        },
-        "start": Object {
-          "x": "50px",
-        },
-      }
-    }
     viewBox="0 0 300.000000 248.000000"
     width="70.000000pt"
     xmlns="http://www.w3.org/2000/svg"
@@ -68,10 +51,33 @@ exports[`should render LoadingPage properly 1`] = `
     </g>
   </ForwardRef(MotionComponent)>
   <ForwardRef(Typography)
+    animate="end"
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "render": [Function],
+      }
+    }
+    initial="start"
     sx={
       Object {
         "fontSize": 30,
         "padding": 0,
+      }
+    }
+    variants={
+      Object {
+        "end": Object {
+          "transition": Object {
+            "duration": 1,
+            "ease": "easeInOut",
+            "yoyo": Infinity,
+          },
+          "x": "-30px",
+        },
+        "start": Object {
+          "x": "30px",
+        },
       }
     }
   >

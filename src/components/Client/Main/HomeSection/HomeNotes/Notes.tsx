@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import NoteElement from "../../../../elements/NoteElement/NoteElement";
 import AddIcon from "@mui/icons-material/Add";
@@ -11,10 +11,11 @@ const NotesSection = styled.div`
 `;
 
 const Notes: React.FC = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const userData = useAppSelector((state) => state.user.userData);
-
   const [notesType, setNotesType] = useState("newest");
+
   return (
     <NotesSection>
       <Box
@@ -55,6 +56,7 @@ const Notes: React.FC = () => {
         sx={{
           margin: "0 auto",
           display: "flex",
+          flexDirection: "flex-start",
           columnGap: 4,
           overflowX: "auto",
           maxWidth: { xs: "93vw", md: "100vw" },
@@ -73,6 +75,9 @@ const Notes: React.FC = () => {
               cursor: "pointer",
               flexShrink: 0,
             }}
+            onClick={() => {
+              navigate("/client/notes/new");
+            }}
           >
             <AddIcon sx={{ fontSize: 40 }} />
           </Button>
@@ -87,7 +92,12 @@ const Notes: React.FC = () => {
                 note.blocks.find(
                   (block: { data: {}; id: string; type: string }) =>
                     block.type === "header"
-                ).data.text
+                )
+                  ? note.blocks.find(
+                      (block: { data: {}; id: string; type: string }) =>
+                        block.type === "header"
+                    ).data.text
+                  : "No header"
               }
               date={`${new Date(note.date).getDate()}/${
                 new Date(note.date).getMonth() + 1
@@ -96,7 +106,12 @@ const Notes: React.FC = () => {
                 note.blocks.find(
                   (block: { data: {}; id: string; type: string }) =>
                     block.type === "paragraph"
-                ).data.text
+                )
+                  ? note.blocks.find(
+                      (block: { data: {}; id: string; type: string }) =>
+                        block.type === "paragraph"
+                    ).data.text
+                  : "No description"
               }
             />
           ))}

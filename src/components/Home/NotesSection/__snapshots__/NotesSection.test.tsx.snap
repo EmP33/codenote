@@ -87,45 +87,50 @@ exports[`should render NotesSection properly 1`] = `
       <ForwardRef(Grid)
         item={true}
       >
-        <NoteElement
+        <Memo(NoteElement)
           content="Get to the airport by 7am before takeoff"
           date="5/3/22"
+          id="n1"
           title="Flight Details"
         />
       </ForwardRef(Grid)>
       <ForwardRef(Grid)
         item={true}
       >
-        <NoteElement
+        <Memo(NoteElement)
           content="Goal Corner market for green homes in Emerald Heights area by specializing in modern"
           date="11/2/22"
+          id="n2"
           title="Business Strategy"
         />
       </ForwardRef(Grid)>
       <ForwardRef(Grid)
         item={true}
       >
-        <NoteElement
+        <Memo(NoteElement)
           content="This is what I need to do today. First of all I have to go to barber to make my haircut, second go to work"
           date="5/11/21"
+          id="n3"
           title="Today's Ideas"
         />
       </ForwardRef(Grid)>
       <ForwardRef(Grid)
         item={true}
       >
-        <NoteElement
+        <Memo(NoteElement)
           content="Regrouping to let James know which listings seem like the best it and..."
           date="22/5/22"
+          id="n4"
           title="Client Preferences"
         />
       </ForwardRef(Grid)>
       <ForwardRef(Grid)
         item={true}
       >
-        <NoteElement
+        <Memo(NoteElement)
           content="What I need to do to make party. First buy some groceries, second call a dj"
           date="24/1/21"
+          id="n5"
           title="Party Preparations"
         />
       </ForwardRef(Grid)>

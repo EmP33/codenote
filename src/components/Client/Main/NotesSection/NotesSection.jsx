@@ -1,8 +1,7 @@
-import React, { useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import HomeNotes from "../HomeSection/HomeNotes/Notes";
-
-import { createReactEditorJS } from "react-editor-js";
 
 import { Box, Button } from "@mui/material";
 
@@ -34,10 +33,8 @@ const EditorContainer = styled.div`
   grid-column-gap: 1rem;
 `;
 
-/* Creating a new instance of the editor. */
-const ReactEditorJS = createReactEditorJS();
-
 const NotesSection = () => {
+  const params = useParams();
   const dispatch = useDispatch();
   const editorCore = useRef(null);
   const userData = useSelector((state) => state.user.userData);
@@ -50,12 +47,13 @@ const NotesSection = () => {
 
     dispatch(
       addNote(uid, {
-        id: uuidv1(),
+        id: params.note === "new" ? uuidv1() : params.note,
         blocks: savedData.blocks,
         date: savedData.time,
+        views: 0,
       })
     );
-  }, []);
+  }, [dispatch, params.note, uid]);
 
   if (!userData.notes.length) return <h1>Loading..</h1>;
 

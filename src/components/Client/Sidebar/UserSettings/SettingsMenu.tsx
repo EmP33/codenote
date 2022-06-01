@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-  MenuList,
-  MenuItem,
-  ListItemText,
-  ListItemIcon,
-  Typography,
-} from "@mui/material";
+import { MenuList, MenuItem, ListItemText, ListItemIcon } from "@mui/material";
 
 import SettingsInputComponentIcon from "@mui/icons-material/SettingsInputComponent";
 import ShieldIcon from "@mui/icons-material/Shield";
