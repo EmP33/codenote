@@ -4,7 +4,7 @@ import {
   Dispatch,
   AnyAction,
 } from "@reduxjs/toolkit";
-import { ref, onValue, set } from "firebase/database";
+import { ref, onValue, set, remove } from "firebase/database";
 import { database } from "../firebase";
 
 type userDataType = {
@@ -51,9 +51,19 @@ export const addNote = (
       set(reference, {
         id: note.id,
         blocks: note.blocks,
-        date: note.date,
-        views: note.views,
+        date: note.date || 1654076820031,
+        views: note.views + 1,
       });
+    };
+    await sendRequest();
+  };
+};
+
+export const removeNote = (id: string, noteID: string) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const sendRequest = async () => {
+      const reference = ref(database, `data/${id}/notes/${noteID}`);
+      remove(reference);
     };
     await sendRequest();
   };

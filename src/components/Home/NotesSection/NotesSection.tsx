@@ -93,6 +93,7 @@ const NotesSection: React.FC = () => {
         >
           <Grid item>
             <NoteElement
+              hoverOnNotes={true}
               title="Flight Details"
               date="5/3/22"
               content="Get to the airport by 7am before takeoff"
@@ -101,6 +102,7 @@ const NotesSection: React.FC = () => {
           </Grid>
           <Grid item>
             <NoteElement
+              hoverOnNotes={true}
               title="Business Strategy"
               date="11/2/22"
               content="Goal Corner market for green homes in Emerald Heights area by specializing in modern"
@@ -109,6 +111,7 @@ const NotesSection: React.FC = () => {
           </Grid>
           <Grid item>
             <NoteElement
+              hoverOnNotes={true}
               title="Today's Ideas"
               date="5/11/21"
               content="This is what I need to do today. First of all I have to go to barber to make my haircut, second go to work"
@@ -117,6 +120,7 @@ const NotesSection: React.FC = () => {
           </Grid>
           <Grid item>
             <NoteElement
+              hoverOnNotes={true}
               title="Client Preferences"
               date="22/5/22"
               content="Regrouping to let James know which listings seem like the best it and..."
@@ -125,6 +129,7 @@ const NotesSection: React.FC = () => {
           </Grid>
           <Grid item>
             <NoteElement
+              hoverOnNotes={true}
               title="Party Preparations"
               date="24/1/21"
               content="What I need to do to make party. First buy some groceries, second call a dj"

@@ -1,4 +1,4 @@
-// import { screen, render } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 // import UserDropdown from "./UserDropdown";
 
 // describe("<Userdropdown/>", () => {
@@ -17,3 +17,5 @@
 //   });
 //   it("should logout user when logout button is clicked", () => {});
 // });
+
+it("should render User Dropdown", () => {});

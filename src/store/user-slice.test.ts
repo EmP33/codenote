@@ -1,4 +1,4 @@
-// import { userActions } from "./user-slice";
+import { userActions } from "./user-slice";
 
 // describe("fetchUser reducer", () => {
 //   it("should return the initial state", () => {
@@ -17,3 +17,5 @@
 //     });
 //   });
 // });
+
+it("should render Slices", () => {});

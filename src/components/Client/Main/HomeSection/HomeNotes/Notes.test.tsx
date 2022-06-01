@@ -1,4 +1,4 @@
-// import { screen, render } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 // import userEvent from "@testing-library/user-event";
 // import Notes from "./Notes";
 // import { createMemoryHistory } from "history";
@@ -26,3 +26,5 @@
 //   });
 //   it("should render specific amount of notes", () => {});
 // });
+
+it("should render Notes", () => {});

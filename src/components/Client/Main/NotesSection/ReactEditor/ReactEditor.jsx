@@ -4,13 +4,32 @@ import { createReactEditorJS } from "react-editor-js";
 import { EDITOR_JS_TOOLS } from "../constants";
 import { useParams } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { addNote } from "../../../../../store/user-slice";
+import { v1 as uuidv1 } from "uuid";
+import { useSelector, useDispatch } from "react-redux";
 
 const ReactEditorJS = createReactEditorJS();
 
 const ReactEditor = ({ editorCore }) => {
   const params = useParams();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
   const userData = useSelector((state) => state.user.userData);
+  const currentNote = userData.notes.find((note) => note.id === params.note);
+  const { uid } = user;
+
+  useEffect(() => {
+    if (currentNote) {
+      dispatch(
+        addNote(uid, {
+          id: params.note === "new" ? uuidv1() : params.note,
+          blocks: currentNote.blocks,
+          date: currentNote.date,
+          views: currentNote.views,
+        })
+      );
+    }
+  }, []);
 
   const handleInitialize = React.useCallback(
     (instance) => {

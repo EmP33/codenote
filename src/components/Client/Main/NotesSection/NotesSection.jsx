@@ -5,6 +5,8 @@ import HomeNotes from "../HomeSection/HomeNotes/Notes";
 
 import { Box, Button } from "@mui/material";
 
+import { Ring } from "@uiball/loaders";
+
 import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../../../../store/user-slice";
 import { v1 as uuidv1 } from "uuid";
@@ -40,6 +42,7 @@ const NotesSection = () => {
   const userData = useSelector((state) => state.user.userData);
   const user = useSelector((state) => state.user.user);
   const { uid } = user;
+  const currentNote = userData.notes.find((note) => note.id === params.note);
 
   /* Saving the data from the editor. */
   const handleSave = useCallback(async () => {
@@ -50,12 +53,12 @@ const NotesSection = () => {
         id: params.note === "new" ? uuidv1() : params.note,
         blocks: savedData.blocks,
         date: savedData.time,
-        views: 0,
+        views: currentNote ? currentNote.views : 0,
       })
     );
-  }, [dispatch, params.note, uid]);
+  }, [dispatch, params.note, uid, currentNote]);
 
-  if (!userData.notes.length) return <h1>Loading..</h1>;
+  // if (!userData.notes.length) return <h1>Loading..</h1>;
 
   return (
     <NotesWrapper>
@@ -89,16 +92,13 @@ const NotesSection = () => {
             marginTop: 4,
           }}
         >
-          <ReactEditor editorCore={editorCore} />
-          {/* <ReactEditorJS
-            holder="holder"
-            onInitialize={handleInitialize}
-            tools={EDITOR_JS_TOOLS}
-            defaultValue={{
-              time: 1635603431943,
-              blocks: userData.notes[0].blocks,
-            }}
-          /> */}
+          {userData.notes ? (
+            <ReactEditor editorCore={editorCore} />
+          ) : (
+            <Box sx={{ width: "100%", textAlign: "center", p: 20 }}>
+              <Ring size={40} lineWeight={5} speed={2} color="black" />
+            </Box>
+          )}
         </Box>
       </EditorContainer>
     </NotesWrapper>
