@@ -9,7 +9,7 @@ describe("NoteElement Component", () => {
   render(
     <Router location={history.location} navigator={history}>
       <NoteElement
-        hoverOnNotes={true}
+        notesClick={true}
         title="Flight Details"
         date="5/3/22"
         content="Get to the airport by 7am before takeoff"

@@ -11,7 +11,7 @@ interface NoteElementProps {
   date: string;
   content: string;
   id: string;
-  hoverOnNotes: boolean;
+  notesClick: boolean;
 }
 
 const NoteElement: React.FC<NoteElementProps> = ({
@@ -19,7 +19,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
   date,
   content,
   id,
-  hoverOnNotes,
+  notesClick,
 }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -37,8 +37,8 @@ const NoteElement: React.FC<NoteElementProps> = ({
     <>
       <Card
         sx={{
-          height: hoverOnNotes ? 250 : 100,
-          width: hoverOnNotes ? 350 : 150,
+          height: notesClick ? 250 : 100,
+          width: notesClick ? 350 : 150,
           fontSize: 2,
           margin: "2rem 0",
           background: "var(--color-tertiary-light)",
@@ -75,7 +75,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
       >
         <CardContent
           onClick={() => {
-            navigate(`/client/notes/${id}`);
+            notesClick && navigate(`/client/notes/${id}`);
           }}
         >
           <Box
@@ -85,7 +85,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
               id="title"
               variant="h5"
               sx={{
-                fontSize: hoverOnNotes ? 18 : 12 /*18*/,
+                fontSize: notesClick ? 18 : 12 /*18*/,
                 marginBottom: 3,
                 transition: "all .2s ease-in",
               }}
@@ -97,7 +97,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
               id="date"
               variant="h6"
               sx={{
-                fontSize: hoverOnNotes ? 16 : 11 /*16*/,
+                fontSize: notesClick ? 16 : 11 /*16*/,
                 color: "var(--color-base)",
                 transition: "all .2s ease-in",
               }}
@@ -108,7 +108,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
           <Typography
             id="content"
             sx={{
-              fontSize: hoverOnNotes ? 14 : 9 /*14*/,
+              fontSize: notesClick ? 14 : 9 /*14*/,
               width: "75%",
               transition: "all .2s ease-in",
             }}
@@ -123,7 +123,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
         >
           <DeleteIcon
             sx={{
-              fontSize: hoverOnNotes ? 25 : 15 /*25*/,
+              fontSize: notesClick ? 25 : 15 /*25*/,
               transition: "all .2s ease-in",
             }}
           />
