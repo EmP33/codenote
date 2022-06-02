@@ -77,6 +77,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
           onClick={() => {
             notesClick && navigate(`/client/notes/${id}`);
           }}
+          sx={{ height: "75%", overflow: "hidden" }}
         >
           <Box
             sx={{ display: "flex", justifyContent: "space-between", zIndex: 5 }}
@@ -88,6 +89,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
                 fontSize: notesClick ? 18 : 12 /*18*/,
                 marginBottom: 3,
                 transition: "all .2s ease-in",
+                fontWeight: "bold",
               }}
               gutterBottom
             >
@@ -111,6 +113,7 @@ const NoteElement: React.FC<NoteElementProps> = ({
               fontSize: notesClick ? 14 : 9 /*14*/,
               width: "75%",
               transition: "all .2s ease-in",
+              wordWrap: "break-word",
             }}
           >
             {content}

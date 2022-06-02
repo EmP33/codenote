@@ -11,6 +11,7 @@ type userDataType = {
   id: string;
   notes?: any[];
   tasks?: any[];
+  draft?: { data: string };
 };
 
 interface userState {
@@ -21,7 +22,7 @@ interface userState {
 
 const initialState: userState = {
   user: true,
-  userData: { id: "", notes: [], tasks: [] },
+  userData: { id: "", notes: [], tasks: [], draft: { data: "" } },
   error: false,
 };
 
@@ -69,6 +70,19 @@ export const removeNote = (id: string, noteID: string) => {
   };
 };
 
+export const updateDraftElement = (note: string, id: string) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const sendRequest = async () => {
+      const noteRef = ref(database, `data/${id}/draft`);
+      set(noteRef, {
+        data: note,
+      });
+    };
+
+    await sendRequest();
+  };
+};
+
 export const createUser = (id: string) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     const sendRequest = async () => {
@@ -77,8 +91,16 @@ export const createUser = (id: string) => {
         id: id,
         tasks: [],
         notes: [],
+        draft: { data: "" },
       });
-      dispatch(userActions.addUserData({ id: id, tasks: [], notes: [] }));
+      dispatch(
+        userActions.addUserData({
+          id: id,
+          tasks: [],
+          notes: [],
+          draft: { data: "" },
+        })
+      );
     };
     await sendRequest();
   };
@@ -106,6 +128,7 @@ export const fetchUser = (id: string) => {
             id: data.id,
             notes: loadedNotes,
             tasks: loadedTasks,
+            draft: data.draft,
           })
         );
       });
