@@ -70,9 +70,10 @@ const Notes: React.FC = () => {
           maxWidth: { xs: "93vw", md: "100vw" },
           transition: "all .2s ease-in",
           p: "0 8px 0 8px",
+          background: "var(--color-tertiary-light)",
 
           "&:hover": {
-            background: "var(--color-tertiary-light)",
+            background: "var(--color-tertiary-dark)",
           },
         }}
         onClick={() => {
@@ -239,35 +240,75 @@ const Notes: React.FC = () => {
                   }
                 />
               )))}
-        {!userData.notes && (
+        {userData.notes && !userData.notes.length && (
           <>
             <Skeleton
               variant="rectangular"
-              width={350}
-              height={250}
+              width={150}
+              height={100}
               sx={{
                 margin: "2rem 0",
-                background: "var(--color-tertiary-light)",
+                background: "var(--color-tertiary-dark)",
                 flexShrink: 0,
               }}
             />
             <Skeleton
               variant="rectangular"
-              width={350}
-              height={250}
+              width={150}
+              height={100}
               sx={{
                 margin: "2rem 0",
-                background: "var(--color-tertiary-light)",
+                background: "var(--color-tertiary-dark)",
                 flexShrink: 0,
               }}
             />
             <Skeleton
               variant="rectangular"
-              width={350}
-              height={250}
+              width={150}
+              height={100}
               sx={{
                 margin: "2rem 0",
-                background: "var(--color-tertiary-light)",
+                background: "var(--color-tertiary-dark)",
+                flexShrink: 0,
+              }}
+            />{" "}
+            <Skeleton
+              variant="rectangular"
+              width={150}
+              height={100}
+              sx={{
+                margin: "2rem 0",
+                background: "var(--color-tertiary-dark)",
+                flexShrink: 0,
+              }}
+            />{" "}
+            <Skeleton
+              variant="rectangular"
+              width={150}
+              height={100}
+              sx={{
+                margin: "2rem 0",
+                background: "var(--color-tertiary-dark)",
+                flexShrink: 0,
+              }}
+            />{" "}
+            <Skeleton
+              variant="rectangular"
+              width={150}
+              height={100}
+              sx={{
+                margin: "2rem 0",
+                background: "var(--color-tertiary-dark)",
+                flexShrink: 0,
+              }}
+            />{" "}
+            <Skeleton
+              variant="rectangular"
+              width={150}
+              height={100}
+              sx={{
+                margin: "2rem 0",
+                background: "var(--color-tertiary-dark)",
                 flexShrink: 0,
               }}
             />

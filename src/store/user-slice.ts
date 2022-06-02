@@ -138,5 +138,40 @@ export const fetchUser = (id: string) => {
   };
 };
 
+export const addTask = (
+  id: string,
+  task: { title: string; date: number; status: string; id: string }
+) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const sendRequest = async () => {
+      const noteRef = ref(database, `data/${id}/tasks/${task.id}`);
+      set(noteRef, {
+        task: task,
+      });
+    };
+
+    await sendRequest();
+  };
+};
+
+export const changeTaskStatus = (
+  id: string,
+  task: { title: string; status: string; date: string; id: string }
+) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const sendRequest = async () => {
+      const noteRef = ref(database, `data/${id}/tasks/${task.id}/task`);
+      set(noteRef, {
+        status: task.status,
+        id: task.id,
+        title: task.title,
+        date: task.date,
+      });
+    };
+
+    await sendRequest();
+  };
+};
+
 export const userActions = userSlice.actions;
 export default userSlice;

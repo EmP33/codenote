@@ -15,7 +15,7 @@ const AddNoteButton: React.FC<IAddNoteButton> = ({ notesClick }) => {
         height: notesClick ? 250 : 100,
         width: notesClick ? 350 : 150,
         margin: "2rem 0",
-        background: "var(--color-tertiary-dark)",
+        background: "var(--color-tertiary)",
         color: "#fff",
         position: "relative",
         zIndex: 1,
@@ -24,7 +24,7 @@ const AddNoteButton: React.FC<IAddNoteButton> = ({ notesClick }) => {
         transition: "all .2s ease-in",
 
         "&:hover": {
-          background: "var(--color-tertiary-dark)",
+          background: "var(--color-tertiary-light)",
         },
         "&:active": {
           background: "#fff",

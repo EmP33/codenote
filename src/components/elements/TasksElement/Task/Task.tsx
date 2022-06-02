@@ -1,13 +1,43 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { Box, Checkbox, Typography } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
+import { changeTaskStatus } from "../../../../store/user-slice";
 
 interface TaskProps {
   title: string;
   date: string;
+  status: string;
+  id: string;
 }
 
-const Task: React.FC<TaskProps> = ({ title, date }) => {
+const Task: React.FC<TaskProps> = ({ title, date, status, id }) => {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.user);
+  const [checked, setChecked] = useState(status === "completed");
+  const dueDate = new Date(date);
+
+  useEffect(() => {
+    setChecked(status === "completed");
+  }, [status]);
+
+  const changeStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let status: string;
+    if (e.target.checked) {
+      // If is checked
+      status = "completed";
+    } else {
+      // If isnt
+      status = "progress";
+    }
+    dispatch(
+      changeTaskStatus(user.uid, {
+        title: title,
+        status: status,
+        date: date,
+        id: id,
+      })
+    );
+  };
   return (
     <Box
       sx={{
@@ -21,8 +51,17 @@ const Task: React.FC<TaskProps> = ({ title, date }) => {
         borderRadius: 1,
       }}
     >
-      <Checkbox color="secondary" />
-      <Typography sx={{ fontSize: { xs: 12, sm: 14, md: 16 } }}>
+      <Checkbox
+        checked={checked}
+        color="secondary"
+        onChange={changeStatusHandler}
+      />
+      <Typography
+        sx={{
+          fontSize: { xs: 12, sm: 14, md: 16 },
+          textDecoration: checked ? "line-through" : "none",
+        }}
+      >
         {title}
       </Typography>
       <Typography
@@ -33,7 +72,9 @@ const Task: React.FC<TaskProps> = ({ title, date }) => {
         }}
         color="secondary"
       >
-        {date}
+        {dueDate.getFullYear()}/{dueDate.getMonth() + 1 <= 9 && "0"}
+        {dueDate.getMonth() + 1}/{dueDate.getDate() <= 9 && "0"}
+        {dueDate.getDate()}
       </Typography>
     </Box>
   );
