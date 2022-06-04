@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Box, Checkbox, Typography } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
 import { changeTaskStatus } from "../../../../store/user-slice";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { removeTask } from "../../../../store/user-slice";
 
 interface TaskProps {
   title: string;
@@ -14,7 +16,14 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id }) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user.user);
   const [checked, setChecked] = useState(status === "completed");
+  const [showDelete, setShowDelete] = useState<boolean>(false);
   const dueDate = new Date(date);
+
+  const showDeleteHandler = () => {
+    if (checked) {
+      setShowDelete(true);
+    }
+  };
 
   useEffect(() => {
     setChecked(status === "completed");
@@ -41,41 +50,71 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id }) => {
   return (
     <Box
       sx={{
-        background: "#fff",
-        color: "var(--color-primary)",
         display: "grid",
-        gridTemplateColumns: "repeat(2,minmax(min-content,max-content)) 1fr",
-        alignItems: "center",
-        padding: 0.5,
-        marginBottom: 3,
-        borderRadius: 1,
+        gridTemplateColumns: "1fr max-content",
       }}
     >
-      <Checkbox
-        checked={checked}
-        color="secondary"
-        onChange={changeStatusHandler}
-      />
-      <Typography
+      <Box
+        onMouseOver={showDeleteHandler}
+        onMouseLeave={() => setShowDelete(false)}
         sx={{
-          fontSize: { xs: 12, sm: 14, md: 16 },
-          textDecoration: checked ? "line-through" : "none",
+          background: "#fff",
+          color: "var(--color-primary)",
+          display: "grid",
+          gridTemplateColumns: "repeat(2,minmax(min-content,max-content)) 1fr",
+          alignItems: "center",
+          padding: 0.5,
+          marginBottom: 2,
+          borderRadius: showDelete ? "4px 0 0 4px" : 1,
         }}
       >
-        {title}
-      </Typography>
-      <Typography
+        <Checkbox
+          checked={checked}
+          color="secondary"
+          onChange={changeStatusHandler}
+        />
+        <Typography
+          sx={{
+            fontSize: { xs: 12, sm: 14, md: 16 },
+            textDecoration: checked ? "line-through" : "none",
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          sx={{
+            justifySelf: "flex-end",
+            marginRight: 1,
+            fontSize: { xs: 12, sm: 14, md: 16 },
+          }}
+          color="secondary"
+        >
+          {dueDate.getFullYear()}/{dueDate.getMonth() + 1 <= 9 && "0"}
+          {dueDate.getMonth() + 1}/{dueDate.getDate() <= 9 && "0"}
+          {dueDate.getDate()}
+        </Typography>
+      </Box>
+      <Box
+        onMouseOver={showDeleteHandler}
+        onMouseLeave={() => setShowDelete(false)}
         sx={{
-          justifySelf: "flex-end",
-          marginRight: 1,
-          fontSize: { xs: 12, sm: 14, md: 16 },
+          width: showDelete ? 50 : 0,
+          height: 50,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "#d50000",
+          borderRadius: "0 4px 4px 0",
+          transition: "width .2s ease-in",
+          overflow: "hidden",
+
+          "&:hover": {
+            backgroundColor: "#ab1818",
+          },
         }}
-        color="secondary"
       >
-        {dueDate.getFullYear()}/{dueDate.getMonth() + 1 <= 9 && "0"}
-        {dueDate.getMonth() + 1}/{dueDate.getDate() <= 9 && "0"}
-        {dueDate.getDate()}
-      </Typography>
+        <DeleteIcon onClick={() => dispatch(removeTask(user.uid, id))} />
+      </Box>
     </Box>
   );
 };
