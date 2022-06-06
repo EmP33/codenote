@@ -12,6 +12,7 @@ describe("Task testing", () => {
           status="test"
           title="Example Title"
           date="Due Today, 2:00 PM"
+          pinnedNote={{ blocks: [], id: "n1", date: 123, views: 1 }}
         />
       )
     ).toMatchSnapshot();
@@ -23,6 +24,7 @@ describe("Task testing", () => {
         status="test"
         title="Example Title"
         date="Due Today, 2:00 PM"
+        pinnedNote={{ blocks: [], id: "n2", date: 123, views: 1 }}
       />
     );
     const task = screen.getByText("example title", { exact: false });
@@ -35,6 +37,7 @@ describe("Task testing", () => {
         status="test"
         title="Example Title"
         date="Due Today, 2:00 PM"
+        pinnedNote={{ blocks: [], id: "n3", date: 123, views: 1 }}
       />
     );
     const task = screen.getByText("Due Today, 2:00 PM", { exact: false });

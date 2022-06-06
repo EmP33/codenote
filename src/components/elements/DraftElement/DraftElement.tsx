@@ -22,11 +22,12 @@ const DraftElement: React.FC = () => {
       sx={{
         background: "var(--color-tertiary-light)",
         minHeight: 200,
-        width: 550,
+        width: "100%",
         overflow: "clip",
         borderRadius: 1,
         display: "flex",
         justifyContent: "center",
+        margin: "0 auto",
       }}
     >
       <EditTextarea

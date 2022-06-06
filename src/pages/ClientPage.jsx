@@ -30,6 +30,7 @@ const ClientPage = () => {
 
   useEffect(() => {
     /* Fetching the user from the database and setting the user in the redux store. If cannot fetch User create new User */
+
     dispatch(fetchUser(uid));
     if (error) {
       dispatch(createUser(uid));

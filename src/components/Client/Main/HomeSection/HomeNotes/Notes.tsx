@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, Button } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import NoteElement from "../../../../elements/NoteElement/NoteElement";
 import { Skeleton } from "@mui/material";
@@ -14,7 +14,6 @@ const NotesSection = styled.div`
 `;
 
 const Notes: React.FC = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const userData = useAppSelector((state) => state.user.userData);
   const [notesType, setNotesType] = useState("newest");
@@ -240,7 +239,7 @@ const Notes: React.FC = () => {
                   }
                 />
               )))}
-        {userData.notes && !userData.notes.length && (
+        {!userData.notes && (
           <>
             <Skeleton
               variant="rectangular"

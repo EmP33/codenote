@@ -51,11 +51,6 @@ const NoteElement: React.FC<NoteElementProps> = ({
           transition: "all .2s ease-in",
           transformOrigin: "center",
 
-          "@media only screen and (max-width: 400px)": {
-            width: "auto",
-            maxWidth: 280,
-          },
-
           "&:before": {
             content: "''",
             width: "100%",

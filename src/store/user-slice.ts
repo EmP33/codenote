@@ -75,7 +75,7 @@ export const fetchUser = (id: string) => {
       onValue(dataRef, (snapshot) => {
         const data = snapshot.val();
 
-        if (!data) dispatch(userActions.setError(true));
+        if (!data) return dispatch(userActions.setError(true));
         const loadedNotes = [];
         const loadedTasks = [];
         for (let key in data.notes) {
@@ -149,7 +149,13 @@ export const updateDraftElement = (note: string, id: string) => {
 
 export const addTask = (
   id: string,
-  task: { title: string; date: number; status: string; id: string }
+  task: {
+    title: string;
+    date: number | string;
+    status: string;
+    id: string;
+    pinnedNote: {};
+  }
 ) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     const sendRequest = async () => {
@@ -175,7 +181,13 @@ export const removeTask = (id: string, taskID: string) => {
 
 export const changeTaskStatus = (
   id: string,
-  task: { title: string; status: string; date: string; id: string }
+  task: {
+    title: string;
+    status: string;
+    date: string;
+    id: string;
+    pinnedNote: {};
+  }
 ) => {
   return async (dispatch: Dispatch<AnyAction>) => {
     const sendRequest = async () => {
@@ -185,6 +197,7 @@ export const changeTaskStatus = (
         id: task.id,
         title: task.title,
         date: task.date,
+        pinnedNote: task.pinnedNote,
       });
     };
 

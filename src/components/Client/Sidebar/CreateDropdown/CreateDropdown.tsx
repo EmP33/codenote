@@ -52,14 +52,6 @@ const CreateDropdown: React.FC<ICreateDropdown> = ({
             <ListItemText primary="Create Note" />
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <TaskIcon />
-            </ListItemIcon>
-            <ListItemText primary="Create Task" />
-          </ListItemButton>
-        </ListItem>
       </List>
     </Popover>
   );

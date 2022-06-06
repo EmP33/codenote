@@ -1,7 +1,8 @@
 import React from "react";
+import Tasks from "../../../elements/TasksElement/Tasks";
 
 const TasksSection: React.FC = () => {
-  return <div>TasksSection</div>;
+  return <Tasks />;
 };
 
 export default TasksSection;

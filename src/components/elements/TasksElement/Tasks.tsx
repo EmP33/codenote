@@ -18,12 +18,15 @@ const Tasks: React.FC = () => {
 
   const addTaskHandler = () => {
     setShowTextField(true);
+    // @ts-ignore
+    taskRef.current.focus();
     if (!showTextField) return;
     // Add task functionality
     if (!taskRef.current) return;
     if (taskRef.current.value === "") {
       return setTaskError(true);
     }
+
     setTaskError(false);
     setShowTextField(false);
     dispatch(
@@ -32,6 +35,7 @@ const Tasks: React.FC = () => {
         date: date ? date.getTime() : new Date().getTime(),
         status: "progress",
         id: uuidv4(),
+        pinnedNote: {},
       })
     );
     taskRef.current.value = "";
@@ -63,15 +67,10 @@ const Tasks: React.FC = () => {
                 date={task.date}
                 id={task.id}
                 status={task.status}
+                pinnedNote={task.pinnedNote}
               />
             ))}
 
-          {/* <Task title="Meet up with a client" date="Due Today, 2:00 PM" />
-          <Task title="Write an application" date="Due Today, 9:00 AM" />
-          <Task title="Conquer the world" date="Due Tomorrow, 10:00 AM" />
-          <Task title="Build an app" date="Due July, 11" />
-          <Task title="Eat icecream" date="Due October, 21" />
-          <Task title="Go to the gym" date="Due December, 24" /> */}
           <Box
             sx={{
               display: "flex",
@@ -91,6 +90,7 @@ const Tasks: React.FC = () => {
               />
             </IconButton>
             <input
+              onKeyUp={(e) => e.key === "Enter" && addTaskHandler()}
               type="text"
               style={{
                 padding: showTextField ? 5 : 0,
