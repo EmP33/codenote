@@ -44,7 +44,7 @@ const Tasks: React.FC = () => {
   return (
     <Card
       sx={{
-        background: "var(--color-tertiary-light)",
+        background: "var(--color-secondary)",
         minWidth: { xs: "100%", sm: 450 },
         color: "#fff",
         textAlign: "center",

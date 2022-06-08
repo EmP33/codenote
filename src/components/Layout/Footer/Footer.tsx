@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        background: "var(--color-tertiary)",
+        background: "var(--color-secondary-dark)",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -22,7 +22,11 @@ const Footer = () => {
             color: "#fff",
           },
         }}
-        sx={{ borderBottom: "2px solid #fff", input: { color: "#fff" } }}
+        sx={{
+          borderBottom: "2px solid #fff",
+          input: { color: "#fff" },
+          display: { xs: "none", sm: "block" },
+        }}
         color="info"
         label="Join our mailing list"
         variant="standard"

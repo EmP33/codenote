@@ -44,7 +44,7 @@ const navVariant = {
 
 const UserDropdownButton = styled.button`
   border: none;
-  background: transparent;
+  background: var(--color-secondary-dark);
   color: #fff;
   cursor: pointer;
 `;
@@ -111,7 +111,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         width: { xs: "100%", md: 300 },
         minHeight: { xs: 0, md: "95vh" },
         height: "auto",
-        background: "var(--color-tertiary)",
+        background: "var(--color-secondary-dark)",
         borderRadius: { xs: 0, md: 2 },
         marginRight: { xs: 0, md: 1 },
         display: "grid",
@@ -119,7 +119,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         gridRowGap: 5,
         alignItems: "center",
         position: "relative",
-        border: { xs: 0, md: "1px solid var(--color-tertiary-dark)" },
+        border: { xs: 0, md: "1px solid var(--color-secondary-dark)" },
       }}
     >
       <Box
@@ -127,7 +127,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           display: "flex",
           alignItems: "center",
           p: 1,
-          background: "var(--color-tertiary)",
+          background: "var(--color-secondary-dark)",
           borderRadius: "8px 8px 0 0 ",
         }}
       >
@@ -135,7 +135,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           <Avatar
             alt={user?.displayName || user?.email}
             sx={{
-              background: "var(--color-tertiary-light)",
+              background: "var(--color-tertiary-dark)",
               border: "1px solid #fff",
             }}
           >
@@ -195,8 +195,9 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         variant="contained"
         disableElevation
         sx={{
-          background: "var(--color-tertiary-light)",
-          "&:hover": { background: "var(--color-tertiary-dark)" },
+          background: "var(--color-secondary)",
+
+          "&:hover": { background: "var(--color-secondary-light)" },
         }}
         color="secondary"
         size="large"
@@ -286,11 +287,11 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         variant="contained"
         sx={{
           display: { xs: "none", md: "block" },
-          background: "var(--color-tertiary-light)",
+          background: "var(--color-secondary)",
           justifySelf: "center",
           position: "absolute",
           bottom: 20,
-          "&:hover": { background: "var(--color-tertiary-dark)" },
+          "&:hover": { background: "var(--color-secondary-light)" },
         }}
         color="secondary"
         size="large"

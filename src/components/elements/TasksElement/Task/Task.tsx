@@ -89,7 +89,7 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
         onMouseLeave={() => setShowDelete(false)}
         sx={{
           background: "#fff",
-          color: "var(--color-primary)",
+          color: "var(--color-primary-dark)",
           display: "grid",
           gridTemplateColumns: location.pathname.includes("tasks")
             ? {
@@ -112,6 +112,7 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
           sx={{
             fontSize: { xs: 12, sm: 14, md: 16 },
             textDecoration: checked ? "line-through" : "none",
+            color: "#555",
           }}
         >
           {title}
@@ -171,7 +172,7 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
             marginRight: 1,
             fontSize: { xs: 12, sm: 14, md: 16 },
           }}
-          color="secondary"
+          color="primary"
         >
           {dueDate.getFullYear()}/{dueDate.getMonth() + 1 <= 9 && "0"}
           {dueDate.getMonth() + 1}/{dueDate.getDate() <= 9 && "0"}

@@ -39,6 +39,7 @@ const LoginPage: React.FC = () => {
         navigate("/client");
       })
       .catch((error) => {
+        console.log(error);
         if (error.message.includes("user-not-found")) {
           setEmailError(true);
         }
@@ -83,8 +84,11 @@ const LoginPage: React.FC = () => {
           />
           <Button
             variant="contained"
-            color="secondary"
-            sx={{ width: "100%" }}
+            sx={{
+              width: "100%",
+              background: "var(--color-tertiary-dark)",
+              "&:hover": { background: "var(--color-tertiary)" },
+            }}
             size="large"
             type="submit"
           >

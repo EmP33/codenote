@@ -69,10 +69,10 @@ const Notes: React.FC = () => {
           maxWidth: { xs: "93vw", md: "100vw" },
           transition: "all .2s ease-in",
           p: "0 8px 0 8px",
-          background: "var(--color-tertiary-light)",
+          background: "var(--color-secondary)",
 
           "&:hover": {
-            background: "var(--color-tertiary-dark)",
+            background: "var(--color-secondary-dark)",
           },
         }}
         onClick={() => {

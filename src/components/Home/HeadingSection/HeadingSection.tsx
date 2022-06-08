@@ -2,6 +2,8 @@ import React from "react";
 import { Typography, Grid, Container } from "@mui/material";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+//@ts-ignore
+import mockup from "../../../assets/mockup.png";
 
 const HeadingWrapper = styled.div`
   display: grid;
@@ -18,7 +20,7 @@ const RegisterButton = styled.button`
   font-size: 16px;
   font-weight: bold;
   letter-spacing: 1px;
-  border: 1px solid #fff;
+  border: 2px solid var(--color-tertiary-dark);
   transition: all 0.3s ease;
   z-index: 1;
 
@@ -36,7 +38,9 @@ const RegisterButton = styled.button`
     top: 5px;
     left: 5px;
     transition: 0.2s;
-    background-color: var(--color-tertiary-light);
+    background-color: var(--color-tertiary-dark);
+    @media screen {
+    }
   }
 `;
 
@@ -50,21 +54,28 @@ const HeadingSection: React.FC = () => {
         sx={{
           height: "87.5vh",
           width: "100%",
+          mt: { xs: 2, lg: 0 },
         }}
       >
-        <Grid item xs={12} sm={7} lg={5}>
+        <Grid item xs={12} lg={5}>
           <HeadingWrapper>
             <Typography
               variant="h1"
               sx={{
-                color: "var(--color-tertiary-light)",
+                color: "var(--color-tertiary-dark)",
                 fontWeight: "bold",
                 fontSize: { xs: 50, md: 100 },
               }}
             >
               CodeNote
             </Typography>
-            <Typography variant="body1" sx={{ fontSize: { xs: 14, md: 18 } }}>
+            <Typography
+              variant="body1"
+              sx={{
+                fontSize: { xs: 14, md: 18 },
+                color: "var(--color-tertiary-dark)",
+              }}
+            >
               Join us to increase your notes to a higher level. Lots of good
               features. Create your account and get started!
             </Typography>
@@ -72,6 +83,26 @@ const HeadingSection: React.FC = () => {
               <RegisterButton>Create an Account</RegisterButton>
             </Link>
           </HeadingWrapper>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          lg={7}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            height: { xs: "60%", md: "70%", lg: "100%" },
+          }}
+        >
+          <img
+            src={mockup}
+            alt="mockup"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+          />
         </Grid>
       </Grid>
     </Container>

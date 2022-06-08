@@ -2,21 +2,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Taviraj:wght@100;200;300;400;500;700;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 :root {
-  --color-primary-light: #161861;
-  --color-primary: #121451;
-  --color-primary-dark: #0e1041;
+  --color-primary-light: #7f7cf7;
+  --color-primary: #6a67ce;
+  --color-primary-dark: #5552a5;
 
-  --color-secondary-light: #17123c;
-  --color-secondary: #130f32;
-  --color-secondary-dark: #0f0c28;
+  --color-secondary-light: #b297ea;
+  --color-secondary: #947ec3;
+  --color-secondary-dark: #76659c;
 
-  --color-tertiary-light: #5e5bc6;
-  --color-tertiary: rgb(78, 76, 165);
-  --color-tertiary-dark: #3e3d84;
+  --color-tertiary-light: #daa4e6;
+  --color-tertiary: #b689c0;
+  --color-tertiary-dark: #926e9a;
 
-  --color-base-light: #ebc0b5;
-  --color-base: #c4a097;
-  --color-base-dark: #9d8079;
+  --color-base-light: #fffffc;
+  --color-base: #eef3d2;
+  --color-base-dark: #bec2a8;
 
   --font-heading: "Kanit", sans-serif;
   --font-primary: "Taviraj", serif;
@@ -28,7 +28,7 @@
   margin: 0;
   padding: 0;
   scrollbar-width: auto;
-  scrollbar-color: #5e5bc6 #3e3d84;
+  scrollbar-color: #76659c #947ec3;
 }
 
 html,
@@ -36,7 +36,7 @@ body {
   font-family: var(--font-base);
   margin: 0;
   scroll-behavior: smooth;
-  background: var(--color-tertiary-dark);
+  background: var(--color-base-light);
   color: #fff;
 }
 
@@ -46,10 +46,10 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #3e3d84;
+  background: #947ec3;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #5e5bc6;
+  background-color: #76659c;
   border-radius: 8px;
 }

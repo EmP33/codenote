@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
     <AppBar
       position="static"
       sx={{
-        background: "var(--color-tertiary)",
+        background: "var(--color-secondary-dark)",
         marginTop: { xs: 0, sm: 3 },
         padding: 1,
         boxShadow: 0,

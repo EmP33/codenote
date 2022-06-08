@@ -10,7 +10,6 @@ interface IHandleSave {
 
 const DraftElement: React.FC = () => {
   const dispatch = useAppDispatch();
-
   const userData = useAppSelector((state) => state.user.userData);
   const user = useAppSelector((state) => state.user.user);
   const handleSave: IHandleSave = ({ name, value, previousValue }) => {
@@ -20,7 +19,7 @@ const DraftElement: React.FC = () => {
   return (
     <Box
       sx={{
-        background: "var(--color-tertiary-light)",
+        background: "var(--color-secondary)",
         minHeight: 200,
         width: "100%",
         overflow: "clip",
@@ -34,7 +33,7 @@ const DraftElement: React.FC = () => {
         style={{
           width: "100%",
           height: "100%",
-          background: "var(--color-tertiary-light)",
+          background: "var(--color-secondary)",
           margin: "0 auto",
           fontSize: "18px",
           color: "#fff",
@@ -42,6 +41,7 @@ const DraftElement: React.FC = () => {
           wordWrap: "break-word",
         }}
         defaultValue={userData.draft ? userData.draft.data : ""}
+        placeholder="Type something..."
         onSave={handleSave}
         rows={15}
       />

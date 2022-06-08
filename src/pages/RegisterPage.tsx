@@ -121,8 +121,11 @@ const RegisterPage: React.FC = () => {
           />
           <Button
             variant="contained"
-            color="secondary"
-            sx={{ width: "100%" }}
+            sx={{
+              width: "100%",
+              background: "var(--color-tertiary-dark)",
+              "&:hover": { background: "var(--color-tertiary)" },
+            }}
             size="large"
             type="submit"
           >

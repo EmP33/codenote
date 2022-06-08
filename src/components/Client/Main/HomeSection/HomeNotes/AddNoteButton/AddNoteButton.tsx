@@ -28,7 +28,7 @@ const AddNoteButton: React.FC<IAddNoteButton> = ({ notesClick }) => {
         },
         "&:active": {
           background: "#fff",
-          color: "#333",
+          color: "#fff",
         },
       }}
       onClick={() => {
