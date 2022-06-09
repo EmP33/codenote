@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { userActions } from "./store/user-slice";
 import { useAppSelector } from "./lib/hooks";
 import LoadingPage from "./pages/LoadingPage/LoadingPage";
+import GuestPage from "./pages/GuestPage";
 
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
 const RegisterPage = React.lazy(() => import("./pages/RegisterPage"));
@@ -59,6 +60,7 @@ const App = () => {
               path="/client/*"
               element={!user ? <Navigate to="/" /> : <ClientPage />}
             />
+            <Route path="/guest/*" element={<GuestPage />} />
           </Routes>
         </AnimatePresence>
       </Suspense>

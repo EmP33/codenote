@@ -51,16 +51,22 @@ const UserDropdown: React.FC<IUserDropdown> = ({
         <ListItemButton>
           <ListItemIcon>
             <Avatar
-              alt={user?.displayName || user?.email}
+              alt={user ? user?.displayName || user?.email : "Guest"}
               sx={{
                 background: "var(--color-tertiary-light)",
                 border: "1px solid #fff",
               }}
             >
-              {user.displayName ? user?.displayName[0] : user?.email[0]}
+              {user
+                ? user.displayName
+                  ? user?.displayName[0]
+                  : user?.email[0]
+                : "G"}
             </Avatar>
           </ListItemIcon>
-          <ListItemText primary={user?.displayName || user?.email} />
+          <ListItemText
+            primary={user ? user?.displayName || user?.email : "Guest"}
+          />
         </ListItemButton>
         <ListItemButton onClick={onSignOut}>
           <ListItemIcon>

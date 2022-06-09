@@ -7,9 +7,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import NoteIcon from "@mui/icons-material/Note";
-import TaskIcon from "@mui/icons-material/Task";
 
 interface ICreateDropdown {
   open: boolean;
@@ -22,6 +21,7 @@ const CreateDropdown: React.FC<ICreateDropdown> = ({
   anchorEl,
   handleClose,
 }) => {
+  const location = useLocation();
   const navigate = useNavigate();
   const id = open ? "simple-popover" : undefined;
   return (
@@ -43,7 +43,9 @@ const CreateDropdown: React.FC<ICreateDropdown> = ({
         <ListItem disablePadding>
           <ListItemButton
             onClick={() => {
-              navigate("/client/notes/new");
+              location.pathname.includes("/client")
+                ? navigate("/client/notes/new")
+                : navigate("/guest/notes/new");
             }}
           >
             <ListItemIcon>

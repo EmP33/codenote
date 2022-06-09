@@ -58,6 +58,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const userData = useAppSelector((state) => state.user.userData);
+  const guestNotes = useAppSelector((state) => state.guest.notes);
   const [showMenu, setShowMenu] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -139,7 +140,11 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
               border: "1px solid #fff",
             }}
           >
-            {user.displayName ? user?.displayName[0] : user?.email[0]}
+            {user
+              ? user.displayName
+                ? user?.displayName[0]
+                : user?.email[0]
+              : "G"}
           </Avatar>
         ) : (
           <Skeleton
@@ -154,16 +159,20 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           variant="body1"
           sx={{ flex: 1, marginLeft: 1, display: "flex" }}
         >
-          {user !== true ? (
-            user?.displayName || user?.email
+          {user ? (
+            user !== true ? (
+              user?.displayName || user?.email
+            ) : (
+              <Skeleton
+                sx={{
+                  bgcolor: "var(--color-tertiary-dark)",
+                  marginRight: 1,
+                  width: "100%",
+                }}
+              />
+            )
           ) : (
-            <Skeleton
-              sx={{
-                bgcolor: "var(--color-tertiary-dark)",
-                marginRight: 1,
-                width: "100%",
-              }}
-            />
+            "Guest"
           )}
 
           <UserDropdownButton onClick={handleClick}>
@@ -246,7 +255,9 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
                     !location.pathname.includes("tasks")
                   }
                   onClick={() => {
-                    navigate("/client");
+                    location.pathname.includes("client")
+                      ? navigate(`/client`)
+                      : navigate(`/guest`);
                   }}
                 >
                   <HomeIcon sx={{ color: "#fff", marginRight: 2 }} />
@@ -258,8 +269,15 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
                 <ListItemButton
                   selected={location.pathname.includes("notes")}
                   onClick={() => {
-                    //@ts-ignore
-                    navigate(`/client/notes/${userData.notes[0].id}`);
+                    location.pathname.includes("/client")
+                      ? navigate(
+                          //@ts-ignore
+                          `/client/notes/${userData.notes[0].id}`
+                        )
+                      : navigate(
+                          //@ts-ignore
+                          `/guest/notes/${guestNotes[0].id}`
+                        );
                   }}
                 >
                   <NoteIcon sx={{ color: "#fff", marginRight: 2 }} />
@@ -271,7 +289,9 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
                 <ListItemButton
                   selected={location.pathname.includes("tasks")}
                   onClick={() => {
-                    navigate("/client/tasks");
+                    location.pathname.includes("/client")
+                      ? navigate(`/client/tasks`)
+                      : navigate(`/guest/tasks`);
                   }}
                 >
                   <TaskIcon sx={{ color: "#fff", marginRight: 2 }} />

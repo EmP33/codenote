@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./user-slice";
+import guestSlice from "./guest-slice";
 
 const store = configureStore({
-  reducer: { user: userSlice.reducer },
+  reducer: { user: userSlice.reducer, guest: guestSlice.reducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

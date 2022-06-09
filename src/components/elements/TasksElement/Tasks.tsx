@@ -1,13 +1,16 @@
 import React, { useState, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import Task from "./Task/Task";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { useAppSelector, useAppDispatch } from "../../../lib/hooks";
 import { addTask } from "../../../store/user-slice";
+import { guestActions } from "../../../store/guest-slice";
 import { v4 as uuidv4 } from "uuid";
 import DatePicker from "./DatePicker/DatePicker";
 
 const Tasks: React.FC = () => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const taskRef = useRef<HTMLInputElement>(null);
   const [showTextField, setShowTextField] = useState(false);
@@ -15,6 +18,7 @@ const Tasks: React.FC = () => {
   const [date, setDate] = React.useState<Date | null>(new Date());
   const user = useAppSelector((state) => state.user.user);
   const userData = useAppSelector((state) => state.user.userData);
+  const tasks = useAppSelector((state) => state.guest.tasks);
 
   const addTaskHandler = () => {
     setShowTextField(true);
@@ -29,15 +33,41 @@ const Tasks: React.FC = () => {
 
     setTaskError(false);
     setShowTextField(false);
-    dispatch(
-      addTask(user.uid, {
-        title: taskRef.current.value,
-        date: date ? date.getTime() : new Date().getTime(),
-        status: "progress",
-        id: uuidv4(),
-        pinnedNote: {},
-      })
+    if (location.pathname.includes("client")) {
+      dispatch(
+        addTask(user.uid, {
+          title: taskRef.current.value,
+          date: date ? date.getTime() : new Date().getTime(),
+          status: "progress",
+          id: uuidv4(),
+          pinnedNote: {},
+        })
+      );
+    } else {
+      dispatch(
+        guestActions.addTask({
+          title: taskRef.current.value,
+          date: date ? date.getTime() : new Date().getTime(),
+          status: "progress",
+          id: uuidv4(),
+          pinnedNote: {},
+        })
+      );
+    }
+    localStorage.setItem(
+      "tasks",
+      JSON.stringify([
+        ...tasks,
+        {
+          title: taskRef.current.value,
+          date: date ? date.getTime() : new Date().getTime(),
+          status: "progress",
+          id: uuidv4(),
+          pinnedNote: {},
+        },
+      ])
     );
+
     taskRef.current.value = "";
   };
 
@@ -58,18 +88,30 @@ const Tasks: React.FC = () => {
           TASKS
         </Typography>
         <Box sx={{ marginTop: 4 }}>
-          {userData.tasks &&
-            !!userData.tasks.length &&
-            userData.tasks.map(({ task }) => (
-              <Task
-                key={task.id}
-                title={task.title}
-                date={task.date}
-                id={task.id}
-                status={task.status}
-                pinnedNote={task.pinnedNote}
-              />
-            ))}
+          {location.pathname.includes("client")
+            ? userData.tasks &&
+              !!userData.tasks.length &&
+              userData.tasks.map(({ task }) => (
+                <Task
+                  key={task.id}
+                  title={task.title}
+                  date={task.date}
+                  id={task.id}
+                  status={task.status}
+                  pinnedNote={task.pinnedNote}
+                />
+              ))
+            : !!tasks.length &&
+              tasks.map((task) => (
+                <Task
+                  key={task.id}
+                  title={task.title}
+                  date={task.date}
+                  id={task.id}
+                  status={task.status}
+                  pinnedNote={task.pinnedNote}
+                />
+              ))}
 
           <Box
             sx={{

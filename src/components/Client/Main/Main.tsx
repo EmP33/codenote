@@ -14,7 +14,7 @@ const Main = () => {
         borderRadius: { xs: 0, md: 1 },
         background: "var(--color-secondary-dark)",
         p: 3,
-        border: "1px solid var(--color-secondary)",
+        border: "1px solid var(--color-secondary-dark)",
         padding: 1,
       }}
     >

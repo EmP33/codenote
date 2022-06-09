@@ -7,8 +7,9 @@ import { removeTask, addTask } from "../../../../store/user-slice";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import NotePopover from "./NotePopover/NotePopover";
 import { useNavigate, useLocation } from "react-router-dom";
+import { guestActions } from "../../../../store/guest-slice";
 
-interface TaskProps {
+interface ITaskProps {
   title: string;
   date: string;
   status: string;
@@ -16,16 +17,24 @@ interface TaskProps {
   pinnedNote: { blocks: any[]; id: string; date: number; views: number };
 }
 
-const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
+const Task: React.FC<ITaskProps> = ({
+  title,
+  date,
+  status,
+  id,
+  pinnedNote,
+}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const user = useAppSelector((state) => state.user.user);
+  const tasks = useAppSelector((state) => state.guest.tasks);
   const [checked, setChecked] = useState(status === "completed");
   const [showDelete, setShowDelete] = useState<boolean>(false);
   const dueDate = new Date(date);
   const [notePopoverAnchor, setNotePopoverAnchor] =
     React.useState<HTMLButtonElement | null>(null);
+  const tasksCopy = [...tasks];
 
   const openNotePopoverHandler = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -37,15 +46,28 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
   }, []);
 
   const setPinnedNoteHandler = useCallback((noteTitle: string, note: {}) => {
-    dispatch(
-      addTask(user.uid, {
+    if (location.pathname.includes("client")) {
+      dispatch(
+        addTask(user.uid, {
+          title: title,
+          date: date,
+          status: status,
+          id: id,
+          pinnedNote: note,
+        })
+      );
+    } else {
+      const taskIndex = tasks.findIndex((task) => task.id === id);
+      tasksCopy[taskIndex] = {
         title: title,
         date: date,
         status: status,
         id: id,
         pinnedNote: note,
-      })
-    );
+      };
+      dispatch(guestActions.setTasks(tasksCopy));
+      localStorage.setItem("tasks", JSON.stringify([...tasksCopy]));
+    }
   }, []);
 
   const showDeleteHandler = () => {
@@ -67,16 +89,41 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
       // If isnt
       status = "progress";
     }
-    dispatch(
-      changeTaskStatus(user.uid, {
+    if (location.pathname.includes("client")) {
+      dispatch(
+        changeTaskStatus(user.uid, {
+          title: title,
+          status: status,
+          date: date,
+          id: id,
+          pinnedNote: pinnedNote || {},
+        })
+      );
+    } else {
+      const taskIndex = tasks.findIndex((task) => task.id === id);
+      tasksCopy[taskIndex] = {
         title: title,
         status: status,
         date: date,
         id: id,
         pinnedNote: pinnedNote || {},
-      })
-    );
+      };
+      dispatch(guestActions.setTasks(tasksCopy));
+      localStorage.setItem("tasks", JSON.stringify([...tasksCopy]));
+    }
   };
+  const deleteTaskHandler = () => {
+    if (location.pathname.includes("client")) {
+      dispatch(removeTask(user.uid, id));
+    } else {
+      localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks.filter((note) => note.id !== id))
+      );
+      dispatch(guestActions.removeTask(id));
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -148,7 +195,11 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
                   },
                   fontSize: { xs: 12, sm: 14, md: 16 },
                 }}
-                onClick={() => navigate(`/client/notes/${pinnedNote.id}`)}
+                onClick={() => {
+                  location.pathname.includes("client")
+                    ? navigate(`/client/notes/${pinnedNote.id}`)
+                    : navigate(`/guest/notes/${pinnedNote.id}`);
+                }}
               >
                 {pinnedNote.blocks
                   ? pinnedNote?.blocks.find(
@@ -180,6 +231,7 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
         </Typography>
       </Box>
       <Box
+        onClick={deleteTaskHandler}
         onMouseOver={showDeleteHandler}
         onMouseLeave={() => setShowDelete(false)}
         sx={{
@@ -198,7 +250,7 @@ const Task: React.FC<TaskProps> = ({ title, date, status, id, pinnedNote }) => {
           },
         }}
       >
-        <DeleteIcon onClick={() => dispatch(removeTask(user.uid, id))} />
+        <DeleteIcon />
       </Box>
     </Box>
   );

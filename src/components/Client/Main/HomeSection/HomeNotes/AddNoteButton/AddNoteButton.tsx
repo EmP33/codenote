@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 
 interface IAddNoteButton {
@@ -9,6 +9,7 @@ interface IAddNoteButton {
 
 const AddNoteButton: React.FC<IAddNoteButton> = ({ notesClick }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <Button
       sx={{
@@ -32,7 +33,9 @@ const AddNoteButton: React.FC<IAddNoteButton> = ({ notesClick }) => {
         },
       }}
       onClick={() => {
-        notesClick && navigate("/client/notes/new");
+        location.pathname.includes("/client")
+          ? navigate("/client/notes/new")
+          : navigate("/guest/notes/new");
       }}
       disabled={!notesClick}
     >

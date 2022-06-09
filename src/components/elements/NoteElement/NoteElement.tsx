@@ -1,10 +1,11 @@
 import React, { useState, useCallback } from "react";
 import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteNoteModal from "./DeleteNoteModal/DeleteNoteModal";
 import { useAppSelector, useAppDispatch } from "../../../lib/hooks";
 import { removeNote } from "../../../store/user-slice";
+import { guestActions } from "../../../store/guest-slice";
 
 interface NoteElementProps {
   title: string;
@@ -22,15 +23,26 @@ const NoteElement: React.FC<NoteElementProps> = ({
   notesClick,
 }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = useCallback(() => setOpen(false), []);
   const user = useAppSelector((state) => state.user.user);
+  const guestNotes = useAppSelector((state) => state.guest.notes);
 
   const deleteModalHandler = () => {
-    navigate("/client");
-    dispatch(removeNote(user.uid, id));
+    if (location.pathname.includes("client")) {
+      navigate("/client");
+      dispatch(removeNote(user.uid, id));
+    } else {
+      navigate("/guest");
+      localStorage.setItem(
+        "notes",
+        JSON.stringify(guestNotes.filter((note) => note.id !== id))
+      );
+      dispatch(guestActions.removeNote(id));
+    }
   };
 
   return (
@@ -70,7 +82,9 @@ const NoteElement: React.FC<NoteElementProps> = ({
       >
         <CardContent
           onClick={() => {
-            notesClick && navigate(`/client/notes/${id}`);
+            location.pathname.includes("client")
+              ? notesClick && navigate(`/client/notes/${id}`)
+              : notesClick && navigate(`/guest/notes/${id}`);
           }}
           sx={{ height: "75%", overflow: "hidden" }}
         >

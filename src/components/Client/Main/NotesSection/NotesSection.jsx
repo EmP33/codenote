@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import HomeNotes from "../HomeSection/HomeNotes/Notes";
 
@@ -9,6 +9,7 @@ import { Ring } from "@uiball/loaders";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addNote } from "../../../../store/user-slice";
+import { guestActions } from "../../../../store/guest-slice";
 import { v1 as uuidv1 } from "uuid";
 import ReactEditor from "./ReactEditor/ReactEditor";
 
@@ -36,27 +37,73 @@ const EditorContainer = styled.div`
 `;
 
 const NotesSection = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
   const editorCore = useRef(null);
   const userData = useSelector((state) => state.user.userData);
   const user = useSelector((state) => state.user.user);
-  const { uid } = user;
+  const notes = useSelector((state) => state.guest.notes);
+  const copyNotes = [...(notes || [])];
+
+  console.log(notes);
+
   const currentNote = userData.notes.find((note) => note.id === params.note);
 
   /* Saving the data from the editor. */
   const handleSave = useCallback(async () => {
     const savedData = await editorCore.current.save();
 
-    dispatch(
-      addNote(uid, {
-        id: params.note === "new" ? uuidv1() : params.note,
+    if (user) {
+      dispatch(
+        addNote(user.uid, {
+          id: params.note === "new" ? uuidv1() : params.note,
+          blocks: savedData.blocks,
+          date: savedData.time,
+          views: currentNote ? currentNote.views : 0,
+        })
+      );
+    }
+    if (notes.map((note) => note.id === params.note) && params.note !== "new") {
+      const noteIndex = notes.findIndex((note) => note.id === params.note);
+      copyNotes[noteIndex] = {
+        id: params.note,
         blocks: savedData.blocks,
         date: savedData.time,
         views: currentNote ? currentNote.views : 0,
-      })
-    );
-  }, [dispatch, params.note, uid, currentNote]);
+      };
+      dispatch(guestActions.setNotes(copyNotes));
+      localStorage.setItem("notes", JSON.stringify([...copyNotes]));
+    } else {
+      dispatch(
+        guestActions.addNote({
+          id: params.note === "new" ? uuidv1() : params.note,
+          blocks: savedData.blocks,
+          date: savedData.time,
+          views: currentNote ? currentNote.views : 0,
+        })
+      );
+      localStorage.setItem(
+        "notes",
+        JSON.stringify([
+          ...notes,
+          {
+            id: params.note === "new" ? uuidv1() : params.note,
+            blocks: savedData.blocks,
+            date: savedData.time,
+            views: currentNote ? currentNote.views : 0,
+          },
+        ])
+      );
+    }
+
+    if (location.pathname.includes("client")) {
+      navigate(`/client`);
+    } else {
+      navigate("/guest");
+    }
+  }, [dispatch, params.note, currentNote, notes]);
 
   // if (!userData.notes.length) return <h1>Loading..</h1>;
 

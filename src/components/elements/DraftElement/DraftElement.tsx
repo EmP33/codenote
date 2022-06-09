@@ -1,20 +1,35 @@
+import { useEffect } from "react";
 import { Box } from "@mui/material";
+import { useLocation } from "react-router-dom";
 //@ts-ignore
 import { EditTextarea } from "react-edit-text";
 import { useAppDispatch, useAppSelector } from "../../../lib/hooks";
 import { updateDraftElement } from "../../../store/user-slice";
+import { guestActions } from "../../../store/guest-slice";
 
 interface IHandleSave {
   (name: any, value: string, previousValue: any): void;
 }
 
 const DraftElement: React.FC = () => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.user.userData);
   const user = useAppSelector((state) => state.user.user);
+  const guestDraft = useAppSelector((state) => state.guest.draft);
   const handleSave: IHandleSave = ({ name, value, previousValue }) => {
-    dispatch(updateDraftElement(value, user.uid));
+    if (location.pathname.includes("/client")) {
+      dispatch(updateDraftElement(value, user.uid));
+    } else {
+      localStorage.setItem("draft", value);
+      dispatch(guestActions.setDraft(value));
+    }
   };
+
+  useEffect(() => {
+    const draft = localStorage.getItem("draft");
+    dispatch(guestActions.setDraft(draft));
+  }, [dispatch]);
 
   return (
     <Box
@@ -40,7 +55,15 @@ const DraftElement: React.FC = () => {
           padding: 10,
           wordWrap: "break-word",
         }}
-        defaultValue={userData.draft ? userData.draft.data : ""}
+        defaultValue={
+          location.pathname.includes("client")
+            ? userData.draft
+              ? userData.draft.data
+              : ""
+            : guestDraft !== ""
+            ? guestDraft
+            : ""
+        }
         placeholder="Type something..."
         onSave={handleSave}
         rows={15}

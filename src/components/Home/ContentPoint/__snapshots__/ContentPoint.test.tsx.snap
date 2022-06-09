@@ -6,7 +6,8 @@ exports[`ContentPoint component expect to render ContentPoint component 1`] = `
     id="heading"
     sx={
       Object {
-        "borderTop": "5px solid #fff",
+        "borderTop": "5px solid var(--color-secondary-dark)",
+        "color": "var(--color-secondary)",
         "display": "flex",
         "justifyContent": "flex-end",
         "padding": Object {
@@ -21,7 +22,7 @@ exports[`ContentPoint component expect to render ContentPoint component 1`] = `
     <span
       style={
         Object {
-          "color": "var(--color-base)",
+          "color": "var(--color-secondary-dark)",
           "paddingRight": 3,
         }
       }

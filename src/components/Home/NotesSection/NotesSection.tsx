@@ -3,7 +3,7 @@ import { Container, Typography, Grid, Box } from "@mui/material";
 import styled from "styled-components";
 import ContentPoint from "../ContentPoint/ContentPoint";
 //@ts-ignore
-import notes from "../../../assets/nono.png";
+import notes from "../../../assets/note.png";
 
 const NotesWrapper = styled.section`
   width: 100%;

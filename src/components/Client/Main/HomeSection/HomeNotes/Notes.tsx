@@ -16,6 +16,7 @@ const NotesSection = styled.div`
 const Notes: React.FC = () => {
   const location = useLocation();
   const userData = useAppSelector((state) => state.user.userData);
+  const guestNotes = useAppSelector((state) => state.guest.notes);
   const [notesType, setNotesType] = useState("newest");
   const [notesClick, setNotesClick] = useState(false);
   const [hoverOnNotes, setHoverOnNotes] = useState(false);
@@ -123,6 +124,44 @@ const Notes: React.FC = () => {
         ) : (
           ""
         )}
+
+        {location.pathname.includes("guest") &&
+          guestNotes.map((note) => (
+            <NoteElement
+              notesClick={notesClick}
+              key={note.id}
+              id={note.id}
+              title={
+                note.blocks
+                  ? note?.blocks.find(
+                      (block: { data: {}; id: string; type: string }) =>
+                        block.type === "header"
+                    )
+                    ? note.blocks.find(
+                        (block: { data: {}; id: string; type: string }) =>
+                          block.type === "header"
+                      ).data.text
+                    : "No header"
+                  : "No header"
+              }
+              date={`${new Date(note.date).getDate()}/${
+                new Date(note.date).getMonth() + 1
+              }/${new Date(note.date).getFullYear()}`}
+              content={
+                note.blocks
+                  ? note.blocks.find(
+                      (block: { data: {}; id: string; type: string }) =>
+                        block.type === "paragraph"
+                    )
+                    ? note.blocks.find(
+                        (block: { data: {}; id: string; type: string }) =>
+                          block.type === "paragraph"
+                      ).data.text
+                    : "No description"
+                  : "No description"
+              }
+            />
+          ))}
 
         {userData.notes &&
           (notesType === "newest"

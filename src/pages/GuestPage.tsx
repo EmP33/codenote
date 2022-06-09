@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { signOut } from "firebase/auth";
@@ -7,12 +7,11 @@ import { auth } from "../firebase";
 
 import Sidebar from "../components/Client/Sidebar/Sidebar";
 import Main from "../components/Client/Main/Main";
-import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import { useAppSelector } from "../lib/hooks";
 
 import { useDispatch } from "react-redux";
-import { createUser, fetchUser, userActions } from "../store/user-slice";
+import { guestActions } from "../store/guest-slice";
 
 const ContentWrapper = styled.div`
   width: 100%;
@@ -20,32 +19,24 @@ const ContentWrapper = styled.div`
   background-color: var(--color-tertiary-dark);
 `;
 
-const ClientPage = () => {
+const GuestPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useAppSelector((state) => state.user.user);
-  const error = useAppSelector((state) => state.user.error);
-  const { uid } = user;
 
   useEffect(() => {
     /* Fetching the user from the database and setting the user in the redux store. If cannot fetch User create new User */
-
-    dispatch(fetchUser(uid));
-    if (error) {
-      dispatch(createUser(uid));
-      dispatch(userActions.setError(false));
-    }
-  }, [dispatch, error, uid]);
+    //@ts-ignore
+    const notes = JSON.parse(localStorage.getItem("notes")) || [];
+    //@ts-ignore
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    dispatch(guestActions.setNotes(notes));
+    dispatch(guestActions.setTasks(tasks));
+  }, [dispatch]);
 
   const signOutCurrentUserHandler = () => {
-    signOut(auth).then(() => {});
+    navigate("/");
   };
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
 
   return (
     <ContentWrapper>
@@ -65,4 +56,4 @@ const ClientPage = () => {
   );
 };
 
-export default ClientPage;
+export default GuestPage;
