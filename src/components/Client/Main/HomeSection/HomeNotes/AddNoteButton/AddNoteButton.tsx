@@ -16,7 +16,7 @@ const AddNoteButton: React.FC<IAddNoteButton> = ({ notesClick }) => {
         height: notesClick ? 250 : 100,
         width: notesClick ? 350 : 150,
         margin: "2rem 0",
-        background: "var(--color-tertiary)",
+        background: "var(--color-tertiary-dark)",
         color: "#fff",
         position: "relative",
         zIndex: 1,

@@ -206,7 +206,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
         sx={{
           background: "var(--color-secondary)",
 
-          "&:hover": { background: "var(--color-secondary-light)" },
+          "&:hover": { background: "var(--color-tertiary-light)" },
         }}
         color="secondary"
         size="large"
@@ -311,9 +311,8 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
           justifySelf: "center",
           position: "absolute",
           bottom: 20,
-          "&:hover": { background: "var(--color-secondary-light)" },
+          "&:hover": { background: "var(--color-tertiary-dark)" },
         }}
-        color="secondary"
         size="large"
         onClick={onSignOut}
       >

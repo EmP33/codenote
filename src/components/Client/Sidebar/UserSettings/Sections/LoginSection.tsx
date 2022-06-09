@@ -29,7 +29,13 @@ const LoginSection = () => {
           label="Confirm password"
           variant="outlined"
         />
-        <Button variant="contained" color="secondary">
+        <Button
+          variant="contained"
+          sx={{
+            background: "var(--color-tertiary-dark)",
+            "&:hover": { background: "var(--color-tertiary-light)" },
+          }}
+        >
           Save
         </Button>
       </FormControl>

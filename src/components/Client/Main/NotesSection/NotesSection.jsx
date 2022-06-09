@@ -113,7 +113,6 @@ const NotesSection = () => {
       <EditorContainer>
         <Button
           variant="contained"
-          color="secondary"
           size="large"
           sx={{
             position: "absolute",
@@ -124,6 +123,10 @@ const NotesSection = () => {
             margin: "0 auto",
             background: "var(--color-tertiary-dark)",
             cursor: "pointer",
+
+            "&:hover": {
+              background: "var(--color-tertiary-light)",
+            },
           }}
           onClick={handleSave}
         >

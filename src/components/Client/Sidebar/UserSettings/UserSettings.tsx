@@ -66,7 +66,7 @@ const UserSettings: React.FC<IUserSettings> = ({ showSettings, onClose }) => {
           color: "#555",
         }}
       >
-        <SettingsMenu onChange={changeTabHandler} />
+        <SettingsMenu onChange={changeTabHandler} tab={tab} />
         <Box
           sx={{
             textAlign: { xs: "center", md: "left" },

@@ -46,10 +46,10 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: #947ec3;
+  background: var(--color-tertiary-dark);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #76659c;
+  background-color: var(--color-tertiary-light);
   border-radius: 8px;
 }

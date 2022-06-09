@@ -152,8 +152,13 @@ const Task: React.FC<ITaskProps> = ({
       >
         <Checkbox
           checked={checked}
-          color="secondary"
           onChange={changeStatusHandler}
+          sx={{
+            color: "var(--color-tertiary-dark)",
+            "&.Mui-checked": {
+              color: "var(--color-tertiary-dark)",
+            },
+          }}
         />
         <Typography
           sx={{
@@ -189,7 +194,7 @@ const Task: React.FC<ITaskProps> = ({
             {pinnedNote && (
               <Typography
                 sx={{
-                  color: "rgba(0, 0, 0, 0.54)",
+                  color: "var(--color-tertiary-dark)",
                   "&:hover": {
                     textDecoration: "underline",
                   },
@@ -222,8 +227,8 @@ const Task: React.FC<ITaskProps> = ({
             justifySelf: "flex-end",
             marginRight: 1,
             fontSize: { xs: 12, sm: 14, md: 16 },
+            color: "var(--color-tertiary-dark)",
           }}
-          color="primary"
         >
           {dueDate.getFullYear()}/{dueDate.getMonth() + 1 <= 9 && "0"}
           {dueDate.getMonth() + 1}/{dueDate.getDate() <= 9 && "0"}

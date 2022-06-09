@@ -8,24 +8,34 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 interface ISettingsMenu {
   onChange: (tabName: string) => void;
+  tab: string;
 }
 
-const SettingsMenu: React.FC<ISettingsMenu> = ({ onChange }) => {
+const SettingsMenu: React.FC<ISettingsMenu> = ({ onChange, tab }) => {
   return (
     <MenuList>
-      <MenuItem onClick={onChange.bind(null, "preferences")}>
+      <MenuItem
+        onClick={onChange.bind(null, "preferences")}
+        sx={{ background: tab === "preferences" ? "#f2f2f2" : "#ffff" }}
+      >
         <ListItemIcon>
           <SettingsInputComponentIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>Preferences</ListItemText>
       </MenuItem>
-      <MenuItem onClick={onChange.bind(null, "login")}>
+      <MenuItem
+        onClick={onChange.bind(null, "login")}
+        sx={{ background: tab === "login" ? "#f2f2f2" : "#ffff" }}
+      >
         <ListItemIcon>
           <ShieldIcon fontSize="small" />
         </ListItemIcon>
         <ListItemText>Login and security</ListItemText>
       </MenuItem>
-      <MenuItem onClick={onChange.bind(null, "information")}>
+      <MenuItem
+        onClick={onChange.bind(null, "information")}
+        sx={{ background: tab === "information" ? "#f2f2f2" : "#ffff" }}
+      >
         <ListItemIcon>
           <PersonOutlineIcon fontSize="small" />
         </ListItemIcon>
