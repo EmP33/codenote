@@ -14,7 +14,6 @@ const Navbar: React.FC = () => {
 
   return (
     <AppBar
-      data-aos="fade-down"
       position="static"
       sx={{
         background: "var(--color-secondary-dark)",
