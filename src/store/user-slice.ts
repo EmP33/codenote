@@ -5,6 +5,8 @@ import {
   AnyAction,
 } from "@reduxjs/toolkit";
 import { ref, onValue, set, remove } from "firebase/database";
+import { updatePassword } from "firebase/auth";
+import { auth } from "../firebase";
 import { database } from "../firebase";
 
 type userDataType = {
@@ -100,6 +102,22 @@ export const fetchUser = (id: string) => {
   };
 };
 
+export const changePassword = (password: string) => {
+  return async (dispatch: Dispatch<AnyAction>) => {
+    const sendRequest = async () => {
+      dispatch(userActions.setError(false));
+      try {
+        if (auth.currentUser) {
+          return updatePassword(auth.currentUser, password);
+        }
+      } catch (err) {
+        dispatch(userActions.setError(true));
+      }
+    };
+    await sendRequest();
+  };
+};
+
 // ////////////////////////////////////////////////////////
 // Note
 
@@ -130,6 +148,9 @@ export const removeNote = (id: string, noteID: string) => {
     await sendRequest();
   };
 };
+
+/////////////////////////////////////////////////////////////
+// DRAFT
 
 export const updateDraftElement = (note: string, id: string) => {
   return async (dispatch: Dispatch<AnyAction>) => {

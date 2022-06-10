@@ -118,7 +118,7 @@ const Tasks: React.FC = () => {
               display: "grid",
               justifyContent: "center",
               gridTemplateColumns: showTextField
-                ? { xs: "1fr", sm: "max-content 1fr 160px" }
+                ? { xs: "1fr", sm: "repeat(2, max-content) 160px" }
                 : "max-content",
               gridTemplateRows: "repeat(3,1fr)",
               "input::placeholder": { color: taskError ? "red" : "#555" },
