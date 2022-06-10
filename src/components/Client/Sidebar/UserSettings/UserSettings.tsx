@@ -72,6 +72,7 @@ const UserSettings: React.FC<IUserSettings> = ({ showSettings, onClose }) => {
             textAlign: { xs: "center", md: "left" },
             borderTop: { xs: "1px solid #555", md: 0 },
             paddingTop: { xs: 2, md: 0 },
+            margin: "0 auto",
           }}
         >
           {tab === "login" && <LoginSection />}

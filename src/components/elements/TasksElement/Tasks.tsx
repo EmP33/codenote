@@ -115,8 +115,12 @@ const Tasks: React.FC = () => {
 
           <Box
             sx={{
-              display: "flex",
+              display: "grid",
               justifyContent: "center",
+              gridTemplateColumns: showTextField
+                ? { xs: "1fr", sm: "max-content 1fr 160px" }
+                : "max-content",
+              gridTemplateRows: "repeat(3,1fr)",
               "input::placeholder": { color: taskError ? "red" : "#555" },
             }}
           >
@@ -128,7 +132,7 @@ const Tasks: React.FC = () => {
             >
               <AddBoxIcon
                 fontSize="inherit"
-                sx={{ fontSize: 40, color: "#fff" }}
+                sx={{ fontSize: 50, color: "#fff" }}
               />
             </IconButton>
             <input
@@ -141,6 +145,7 @@ const Tasks: React.FC = () => {
                 width: showTextField ? 250 : 0,
                 fontSize: 16,
                 transition: "width .2s ease-in",
+                margin: "0 auto",
               }}
               placeholder={taskError ? "Someting went wrong" : ""}
               ref={taskRef}

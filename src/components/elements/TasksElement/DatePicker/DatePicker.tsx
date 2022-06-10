@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Box } from "@mui/material";
+
+import { Box, TextField, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 
 interface IDatePickerComponent {
   onDateSet: (value: Date | null) => void;
@@ -13,6 +16,9 @@ const DatePickerComponent: React.FC<IDatePickerComponent> = ({
   onDateSet,
   date,
 }) => {
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box
       sx={{
@@ -28,18 +34,23 @@ const DatePickerComponent: React.FC<IDatePickerComponent> = ({
       }}
     >
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DatePicker
-          label="Custom input"
-          value={date}
-          onChange={(newValue) => {
-            onDateSet(newValue);
-          }}
-          renderInput={({ inputRef, inputProps, InputProps }) => (
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              {InputProps?.endAdornment}
-            </Box>
-          )}
-        />
+        {fullScreen ? (
+          <MobileDatePicker
+            value={date}
+            onChange={(newValue) => {
+              onDateSet(newValue);
+            }}
+            renderInput={(params) => <TextField color="info" {...params} />}
+          />
+        ) : (
+          <DesktopDatePicker
+            value={date}
+            onChange={(newValue) => {
+              onDateSet(newValue);
+            }}
+            renderInput={(params) => <TextField color="info" {...params} />}
+          />
+        )}
       </LocalizationProvider>
     </Box>
   );

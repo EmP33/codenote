@@ -270,14 +270,18 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
                   selected={location.pathname.includes("notes")}
                   onClick={() => {
                     location.pathname.includes("/client")
+                      ? userData && userData?.notes
+                        ? navigate(
+                            //@ts-ignore
+                            `/client/notes/${userData.notes[0].id}`
+                          )
+                        : navigate(`/client/notes/new`)
+                      : guestNotes[0]
                       ? navigate(
                           //@ts-ignore
-                          `/client/notes/${userData.notes[0].id}`
-                        )
-                      : navigate(
-                          //@ts-ignore
                           `/guest/notes/${guestNotes[0].id}`
-                        );
+                        )
+                      : navigate("/guest/notes/new");
                   }}
                 >
                   <NoteIcon sx={{ color: "#fff", marginRight: 2 }} />
