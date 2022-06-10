@@ -45,7 +45,7 @@ const NotesSection: React.FC = () => {
           heading="Improve
   efficiency"
         />
-        <Grid container sx={{ marginTop: 5, height: "100vh" }}>
+        <Grid data-aos="fade-up" container sx={{ marginTop: 5 }}>
           <Grid
             item
             xs={12}
@@ -62,7 +62,6 @@ const NotesSection: React.FC = () => {
               sx={{
                 textAlign: "center",
                 fontFamily: "var(--font-heading)",
-                marginTop: { xs: 10, lg: 0 },
                 color: "var(--color-tertiary-dark)",
               }}
             >

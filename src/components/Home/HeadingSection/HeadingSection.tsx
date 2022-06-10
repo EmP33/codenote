@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Grid, Container } from "@mui/material";
+import { Typography, Grid, Container, Box } from "@mui/material";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 //@ts-ignore
@@ -10,6 +10,7 @@ const HeadingWrapper = styled.div`
   justify-items: flex-start;
   grid-row-gap: 1rem;
 `;
+
 const RegisterButton = styled.button`
   position: relative;
   padding: 0.75rem 1.5rem 0.75rem 1.5rem;
@@ -48,13 +49,14 @@ const HeadingSection: React.FC = () => {
   return (
     <Container maxWidth="xl">
       <Grid
+        data-aos="zoom-in"
         container
         spacing={0}
         alignItems="center"
         sx={{
           height: "87.5vh",
           width: "100%",
-          mt: { xs: 2, lg: 0 },
+          mt: { xs: 15, lg: 0 },
         }}
       >
         <Grid item xs={12} lg={5}>
@@ -105,6 +107,18 @@ const HeadingSection: React.FC = () => {
           />
         </Grid>
       </Grid>
+      <ul className="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </Container>
   );
 };

@@ -40,7 +40,7 @@ const TasksSection: React.FC = () => {
     <TasksWrapper>
       <Container maxWidth="xl" sx={{ padding: { xs: 0, md: "0 24px 0 24px" } }}>
         <ContentPoint index="02" heading="Organize time" />
-        <Grid container sx={{ marginTop: 5 }}>
+        <Grid data-aos="fade-up" container sx={{ marginTop: 5 }}>
           <Grid
             item
             xs={12}
@@ -74,9 +74,26 @@ const TasksSection: React.FC = () => {
               keep them organized.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Box sx={{ width: 400, margin: "0 auto" }}>
-              <img src={tasks} alt="tasks" width="100%" />
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Box
+              sx={{
+                height: "100%",
+              }}
+            >
+              <img
+                src={tasks}
+                alt="tasks"
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
             </Box>
           </Grid>
         </Grid>
