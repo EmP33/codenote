@@ -270,7 +270,7 @@ const Sidebar: React.FC<ISidebar> = ({ user, onSignOut }) => {
                   selected={location.pathname.includes("notes")}
                   onClick={() => {
                     location.pathname.includes("/client")
-                      ? userData && userData?.notes
+                      ? userData.notes && userData.notes?.length
                         ? navigate(
                             //@ts-ignore
                             `/client/notes/${userData.notes[0].id}`
