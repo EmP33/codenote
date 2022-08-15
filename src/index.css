@@ -62,6 +62,7 @@ body {
   height: 100%;
   overflow: hidden;
   margin-top: 7rem;
+  z-index: 1;
 }
 
 .circles li {

@@ -107,18 +107,6 @@ const HeadingSection: React.FC = () => {
           />
         </Grid>
       </Grid>
-      <ul className="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
     </Container>
   );
 };
